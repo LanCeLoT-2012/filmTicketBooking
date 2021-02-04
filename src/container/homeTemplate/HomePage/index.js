@@ -54,7 +54,9 @@ class HomePage extends Component {
 
 	UNSAFE_componentWillMount = () => {
 		const accessToken = window.localStorage.getItem("accessToken");
-		if (accessToken) {
+		if (!accessToken) {
+			
+		} else {
 			axios({
 				url: "http://localhost:5000/api/users/isLoggedIn",
 				method: "GET",
@@ -63,9 +65,14 @@ class HomePage extends Component {
 					Accept: "application/json",
 					Authorization: `Bearer ${accessToken}`,
 				},
-			}).then((result) => {
-				this.props.userAlreadyLoggedIn(result.data);
-			});
+			})
+				.then((result) => {
+					console.log(result);
+					this.props.userAlreadyLoggedIn(result.data);
+				})
+				.catch((err) => {
+					this.props.history.push("/userLogin");
+				}); 
 		}
 	};
 
@@ -76,7 +83,6 @@ class HomePage extends Component {
 	render() {
 		const { user, isLoggedIn } = this.props;
 		if (this.state.loading) {
-			console.log("LOADING");
 			return <Loader />;
 		} else {
 			return (
