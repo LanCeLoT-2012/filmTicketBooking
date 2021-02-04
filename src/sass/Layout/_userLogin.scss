@@ -1,0 +1,263 @@
+.userLogin,
+.userRegister {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../assets/img/backapp.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+
+    .userLoginForm,
+    .userRegisterForm {
+        display: block;
+        width: 450px;
+        background-color: #1d1d1de5;
+        border: 0;
+        border-radius: 10px;
+
+        form {
+            padding: 35px 20px;
+
+            .header__form {
+                position: relative;
+
+                h1 {
+                    color: rgb(0, 217, 255);
+                    text-align: center;
+                    margin-bottom: 30px;
+                }
+
+                button {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    background-color: transparent;
+                    border: 0;
+                    i {
+                        color: white;
+                        font-size: 20px;
+                    }
+                    &:focus {
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+            }
+
+            .header__body {
+                .userAvatar {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 80px;
+                    width: 80px;
+                    border-radius: 50%;
+                    border: 2px solid rgb(0, 217, 255);
+                    button {
+                        background-color: transparent;
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 0;
+                        i {
+                            position: absolute;
+                            color: rgb(0, 217, 255);
+                            font-size: 20px;
+                            bottom: 0;
+                            right: 0;
+                            background-color: black;
+                            border-radius: 50%;
+                        }
+                        img {
+                            height: 100%;
+                            width: 100%;
+                            border-radius: 50%;
+                        }
+                        &:focus {
+                            outline: none;
+                            box-shadow: none;
+                        }
+                    }
+                }
+                .notification {
+                    #resNoti {
+                        display: block;
+                        text-align: center;
+                        color: red;
+                    }
+                }
+
+                label {
+                    display: block;
+                    color: whitesmoke;
+                    width: 100%;
+                }
+
+                input {
+                    display: block;
+                    width: 100%;
+                    border: 0;
+                    color: whitesmoke;
+                    background-color: transparent;
+                    border-bottom: 2px solid rgb(0, 217, 255);
+                    padding: 7px 0;
+                    margin-bottom: 20px;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+
+                p {
+                    margin-top: 10px;
+                    display: block;
+                    text-align: center;
+                    color: whitesmoke;
+
+                    a {
+                        text-align: center;
+                        color: rgb(0, 217, 255);
+                        text-decoration: none;
+                        margin-bottom: 20px;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            .form__footer {
+                button {
+                    padding: 10px 15px;
+                    background-color: rgb(0, 217, 255);
+                    border: 0;
+                    border-radius: 30px;
+                    width: 100%;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+    #avatars, .show {
+        padding-right: 0;
+        .modal-dialog {
+            .modal-content {
+                background-color: #1d1d1d;
+                .modal-header {
+                    border: 0;
+                    h3 {
+                        color: rgb(0, 217, 255);
+                    }
+                    button {
+                        border: 0;
+                        text-shadow: none;
+                        i {
+                            color: rgb(0, 217, 255);
+                        }
+                        &:focus {
+                            outline: none;
+                            box-shadow: none;
+                        }
+                    }
+                }
+                .modal-body {
+                    border: 0;
+                    .avatars__row {
+                        .avatar__img {
+                            margin-bottom: 10px;
+                            img {
+                                border-radius: 50%;
+                                width: 100%;
+                                cursor: pointer;
+                                &:hover {
+                                    border: 2px solid rgb(0, 217, 255);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 577px) {
+    .userLogin,
+    .userRegister {
+        .userLoginForm,
+        .userRegisterForm {
+            display: block;
+            width: 250px;
+
+            form {
+                .header__form {
+                    h1 {
+                        font-size: 32px;
+                    }
+                }
+
+                .header__body {
+                    label {
+                        font-size: 14px;
+                    }
+
+                    input {
+                        padding: 5px 0;
+                    }
+
+                    p {
+                        font-size: 14px;
+                    }
+                }
+
+                .form__footer {
+                    button {
+                        padding: 7px 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+    .userLogin,
+    .userRegister {
+        .userLoginForm,
+        .userRegisterForm {
+            display: block;
+            width: 400px;
+
+            form {
+                .header__form {
+                    h1 {
+                        font-size: 35px;
+                    }
+                }
+
+                .header__body {
+                    label {
+                        font-size: 14px;
+                    }
+
+                    input {
+                        padding: 5px 0;
+                    }
+
+                    p {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.text__line {
+    cursor: pointer;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 20px;
+    height: 50px;
+    font-size: 16px;
+    transition: color .2s;
+    margin-bottom: 5px;
+    font-weight: 500;
+    padding-top: 10px;
+    transition: all .2s;
+    &:hover {
+        color: #fa5238;
+    }
+    @media screen and (max-width: 578px) {
+        height: 30px;
+    }
+}

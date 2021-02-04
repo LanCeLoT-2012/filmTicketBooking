@@ -1,0 +1,52 @@
+.newsSection {
+    margin-bottom: 50px;
+    h1 {
+        font-size: 30px;
+        display: inline-block;
+        padding: 8px 16px;
+        margin-bottom: 40px;
+        border-bottom: 2px solid rgb(0, 217, 255);
+        color: rgb(0, 217, 255);
+    }
+    .cinemaNew {
+        padding: 20px 0;
+        .newThumbnail {
+            height: 150px;
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+            }
+        }
+        .newPost {
+            color: whitesmoke;
+            padding-left: 0;
+            #newTitle {
+                font-size: 20px;
+                color: whitesmoke;
+                text-decoration: none;
+                margin-bottom: 10px;
+                font-weight: 600;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                transition: 0.5s all;
+                cursor: pointer;
+                &:hover {
+                    color: rgb(0, 217, 255);
+                }
+            }
+            #newContent {
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical; 
+            }
+        }
+    }
+    .haveBorder {
+        border-right: 3px solid rgb(0, 217, 255);
+    }
+}
+

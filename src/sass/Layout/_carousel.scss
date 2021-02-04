@@ -1,0 +1,130 @@
+.carouselSection {
+    .navbarSection {
+        display: block;
+        height: 80px;
+        color: #1d1d1d;
+    }
+    .carousel__content {
+        position: relative;
+        #carouselExampleIndicators {
+            .carousel-inner {
+                .carousel-item {
+                    position: relative;
+                    img {
+                        width: 100%;
+                        height: 550px;
+                    }
+                    .modal-video {
+                        .modal-video-body {
+                            .modal-video-inner {
+                                .modal-video-movie-wrap {
+                                    border-radius: 15px;
+                                    .modal-video-close-btn {
+                                        top: -20px;
+                                        left: -50px;
+                                        z-index: 100;
+                                        position: absolute;
+                                        width: 30px;
+                                        height: 30px;
+                                        opacity: 1;
+                                    }
+                                    iframe {
+                                        border-radius: 15px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    button {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 80px;
+                        height: 80px;
+                        border: 2px solid white;
+                        border-radius: 50%;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: rgba(0, 0, 0, 0.39);
+                        opacity: 0;
+                        transition: 0.5s all;
+                        &:focus {
+                            border: 0;
+                            outline: none;
+                        }
+                        i {
+                            color: white;
+                            font-size: 20px;
+                            border: 0;
+                        }
+                    }
+                    &:hover button {
+                        opacity: 1;
+                    }
+                }
+            }
+            .left__control {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                background: none;
+                .ion-ios-arrow-left {
+                    font-size: 80px;
+                    opacity: 0.5;
+                    margin-left: 50px;
+                }
+            }
+            .right__control {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                background: none;
+                .ion-ios-arrow-right {
+                    font-size: 80px;
+                    opacity: 0.5;
+                    margin-right: 50px;
+                }
+            }
+        }
+    }
+}
+
+.modal-video {
+    .modal-video-body {
+        .modal-video-inner {
+            .modal-video-close-btn {
+                position: absolute;
+                top: 0;
+                right: 0;
+                transform: translate(50%, -50%);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .carouselSection {
+        .carousel__content {
+            display: none;
+        }
+    }
+}
+
+@media screen and (min-width: 577px) and (max-width: 786px) {
+    .carouselSection {
+        .carousel__content {
+            #carouselExampleIndicators {
+                .carousel-inner {
+                    .carousel-item {
+                        img {
+                            width: 100%;
+                            height: 330px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
