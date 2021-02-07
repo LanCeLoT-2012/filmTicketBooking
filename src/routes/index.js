@@ -6,7 +6,7 @@ import MovieDetail from "../container/homeTemplate/MovieDetail";
 import UserLogin from "../container/userLogin/index"
 import UserRegister from "../container/userRegister";
 import NewDetail from "../container/homeTemplate/NewDetail/index";
-import Checkout from "../container/Checkout/index.js";
+import Checkout from "../container/homeTemplate/Checkout/index";
 
 const routesHomeTemplate = [
 	{
@@ -51,7 +51,7 @@ const routesHomeTemplate = [
 	},
 	{
 		exact: true,
-		path: "/film/:filmId/checkout",
+		path: "/checkout/:showTimeId",
 		component: Checkout,
 	},
 	{

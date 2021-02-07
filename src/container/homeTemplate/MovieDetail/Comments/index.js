@@ -66,7 +66,7 @@ class Comments extends Component {
 			);
 		} else {
 			return allComments.map((comment, index) => {
-				return <UserComment comment={comment} />;
+				return <UserComment comment={comment} key={index} />;
 			});
 		}
 	};

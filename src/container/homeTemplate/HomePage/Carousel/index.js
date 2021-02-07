@@ -31,7 +31,6 @@ export default class Carousel extends Component {
 	};
 
 	render() {
-		console.log(this.props);
 		return (
 			<div className='carouselSection'>
 				<div className='navbarSection'></div>

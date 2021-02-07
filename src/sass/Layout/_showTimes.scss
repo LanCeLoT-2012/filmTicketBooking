@@ -8,93 +8,101 @@
                 margin: 0;
             }
         }
-        .tix__content {
-            margin: 0;
-            .tix__left__col {
-                overflow: hidden;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-right: 1px solid $color-gray-6;
-                #showtheature__myTab {
-                    display: block !important;
-                    text-align: center;
-                    border: none;
-                    .nav-item {
-                        margin: 0;
-                        a {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            position: relative;
-                            opacity: 0.5;
-                            border: none;
-                            transition: all 0.5s;
-                            &:hover {
-                                border: none;
-                                opacity: 1;
+        .showTime_Table {
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid whitesmoke;
+            .showTime_Col {
+                height: 700px;
+                .showTime_Left_Col {
+                    height: 100%;
+                    padding: 0;
+                    border-right: 1px solid whitesmoke;
+                    #showTimeTabs {
+                        .nav-item {
+                            margin-bottom: 15px;
+                            a {
+                                
+                                border-bottom: 1px solid rgba(245, 245, 245, 0.25);
+                                img {
+                                    width: 100%;
+                                }
                             }
-                            &::after {
-                                content: "";
-                                position: absolute;
-                                bottom: 0;
-                                left: 0;
-                                right: 0;
-                                height: 1px;
-                                width: 60%;
-                                background-color: rgba(238, 238, 238, 0.88);
-                                display: block;
-                                margin: 10px auto 0;
-                            }
-                        }
-                        a.active {
-                            opacity: 1;
-                        }
-                        img {
-                            width: 50px;
                         }
                     }
                 }
-            }
-        }
-        .tix__right__col {
-            display: block;
-            height: 300px;
-            overflow-y: scroll;
-            #showTimes__myTabContent {
-                width: 100%;
-                .showTimes__item {
-                    display: block;
-                    color: whitesmoke;
-                    width: 100%;
-                    border-bottom: 1px solid whitesmoke;
-                    #showTimes__day {
-                        margin-top: 10px;
-                        margin-bottom: 5px;
-                    }
-                }
-                .showTimes__detail {
-                    .showing__time {
-                        font-size: 16px;
-                        border-radius: 4px;
-                        text-align: center;
-                        background: 0 0;
-                        padding: 7px 15px;
-                        margin-right: 10px;
-                        transition: all 0.2s;
-                        margin-bottom: 10px;
-                        margin-top: 10px;
-                        background-color: #fb4226;
-                        border: none;
-                        color: #fff;
-                        &:hover {
-                            background-color: #b42a14;
-                        }
-                        &:focus {
-                            outline: none;
-                            box-shadow: none;
-                            border: 0;
+                .showTime_Right_Col {
+                    padding: 15px;
+                    height: 100%;
+                    overflow-y: scroll;
+                    #showTimesTabContent {
+                        .tab-pane {
+                            .showTime {
+                                padding-bottom: 15px;
+                                border-bottom: 1px solid rgba(245, 245, 245, 0.25);
+                                .cinema_info {
+                                    p {
+                                        margin-bottom: 0;
+                                        color: whitesmoke;
+                                        font-weight: 600;
+                                    }
+                                    .cinemaName {
+                                        font-size: 18px;
+                                    }
+                                    #LotteCinema {
+                                        color: #ca4137;
+                                    }
+                                    #BHDStar {
+                                        color: #8bc541;
+                                    }
+                                    #Cinestar {
+                                        color: #df0d7a;
+                                    }
+                                    #CGV {
+                                        color: red;
+                                    }
+                                    #MegaGS {
+                                        color: #e5a813;
+                                    }
+                                    #GalaxyCinema {
+                                        color: blue;
+                                    }
+                                    #cinemaAdd {
+                                        color: #9b9b9b;
+                                        font-size: 14px;
+                                    }
+                                    #cinemaLocation {
+                                        font-size: 18px;
+                                    }
+                                }
+                                .showTimes {
+                                    margin-top: 10px;
+                                    color: whitesmoke;
+                                    font-weight: 600;
+                                    .left_Col {
+                                        padding-right: 0;
+                                    }
+                                    .right_Col {
+                                        button {
+                                            padding: 5px 15px;
+                                            margin-right: 10px;
+                                            border-radius: 7px;
+                                            border: 0;
+                                            color: whitesmoke;
+                                            transition: .3s all;
+                                            background-color: #fb4226;
+                                            &:hover {
+                                                background-color: #b42a14;
+                                            }
+                                            &:focus {
+                                                outline: none;
+                                                box-shadow: none;
+                                                border: 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

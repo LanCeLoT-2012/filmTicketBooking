@@ -17,6 +17,8 @@ class MovieDetail extends Component {
 		super(props);
 		this.state = {
 			film: {},
+			showTimeCinemas: [],
+			filmShowtimes: [],
 			loading: true,
 			isOpen: false,
 		};
@@ -35,24 +37,6 @@ class MovieDetail extends Component {
 		}
 	};
 
-	componentDidMount = () => {
-		const { filmId } = this.props.match.params;
-		axios({
-			url: `http://localhost:5000/api/films/getFilm/${filmId}`,
-			method: "GET",
-		})
-			.then((result) => {
-				console.log(result.data);
-				this.setState({
-					film: result.data,
-					loading: false,
-				});
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
-
 	getVideoId = (youtubeUrl) => {
 		var videoId = youtubeUrl.match(
 			/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/
@@ -60,9 +44,47 @@ class MovieDetail extends Component {
 		return videoId[1];
 	};
 
+	getFilmShowtimes = (filmInfomation, showTimeCinemas) => {
+		axios({
+			url: `http://localhost:5000/api/showtimes/getShowtimes/${this.props.match.params.filmId}`,
+			method: "GET",
+		}).then((result) => {
+			const filmShowtimes = result.data;
+			this.setState({
+				film: filmInfomation,
+				showTimeCinemas,
+				filmShowtimes,
+				loading: false
+			})
+		})
+	}
+
+	getShowtimeCinemas = (filmInfomation) => {
+		axios({
+			url: `http://localhost:5000/api/showtimes/getCinemas/${this.props.match.params.filmId}`,
+			method: "GET"
+		}).then((result) => {
+			const showTimeCinemas = result.data;
+			this.getFilmShowtimes(filmInfomation, showTimeCinemas);
+		})
+	}
+
+	getFilmInfomation = () => {
+		axios({
+			url: `http://localhost:5000/api/films/getFilm/${this.props.match.params.filmId}`,
+			method: "GET",
+		}).then((result) => {
+			const filmInfomation = result.data;
+			this.getShowtimeCinemas(filmInfomation);
+		});
+	}
+
+	componentDidMount = () => {
+		this.getFilmInfomation();
+	};
+
 	renderMovieDetail = () => {
 		const { film } = this.state;
-		console.log(film);
 		if (film) {
 			return (
 				<div>
@@ -164,13 +186,13 @@ class MovieDetail extends Component {
 							<div className='container'>
 								<div className='info__section'>
 									<ul
-										class='nav nav-tabs'
+										className='nav nav-tabs'
 										id='myTab'
 										role='tablist'
 									>
-										<li class='nav-item'>
+										<li className='nav-item'>
 											<a
-												class='nav-link active'
+												className='nav-link active'
 												id='home-tab'
 												data-toggle='tab'
 												href='#showTime'
@@ -181,9 +203,9 @@ class MovieDetail extends Component {
 												Lịch chiếu
 											</a>
 										</li>
-										<li class='nav-item'>
+										<li className='nav-item'>
 											<a
-												class='nav-link'
+												className='nav-link'
 												id='profile-tab'
 												data-toggle='tab'
 												href='#information'
@@ -194,9 +216,9 @@ class MovieDetail extends Component {
 												Thông tin
 											</a>
 										</li>
-										<li class='nav-item'>
+										<li className='nav-item'>
 											<a
-												class='nav-link'
+												className='nav-link'
 												id='contact-tab'
 												data-toggle='tab'
 												href='#reviews'
@@ -208,9 +230,9 @@ class MovieDetail extends Component {
 											</a>
 										</li>
 									</ul>
-									<div class='tab-content' id='myTabContent'>
+									<div className='tab-content' id='myTabContent'>
 										<div
-											class='tab-pane fade show active'
+											className='tab-pane fade show active'
 											id='showTime'
 											role='tabpanel'
 											aria-labelledby='home-tab'
@@ -218,10 +240,12 @@ class MovieDetail extends Component {
 											<Showtimes
 												history={this.props.history}
 												filmId={film._id}
+												showTimeCinemas={this.state.showTimeCinemas}
+												filmShowtimes={this.state.filmShowtimes}
 											/>
 										</div>
 										<div
-											class='tab-pane fade'
+											className='tab-pane fade'
 											id='information'
 											role='tabpanel'
 											aria-labelledby='profile-tab'
@@ -231,7 +255,7 @@ class MovieDetail extends Component {
 											/>
 										</div>
 										<div
-											class='tab-pane fade'
+											className='tab-pane fade'
 											id='reviews'
 											role='tabpanel'
 											aria-labelledby='contact-tab'

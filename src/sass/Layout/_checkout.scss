@@ -15,14 +15,36 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    font-weight: 600;
                     p {
                         margin: 0;
                         margin-left: 15px;
                         color: whitesmoke;
-                    }
-                    #cinemaName {
-                        font-size: 20px;
-                        color: #c6d45d;
+                        #LotteCinema {
+                            color: #ca4137;
+                        }
+                        #BHDStar {
+                            color: #8bc541;
+                        }
+                        #Cinestar {
+                            color: #df0d7a;
+                        }
+                        #CGV {
+                            color: red;
+                        }
+                        #MegaGS {
+                            color: #e5a813;
+                        }
+                        #GalaxyCinema {
+                            color: blue;
+                        }
+                        #cinemaAdd {
+                            color: #9b9b9b;
+                            font-size: 14px;
+                        }
+                        #cinemaLocation {
+                            font-size: 18px;
+                        }
                     }
                 }
             }
@@ -178,16 +200,34 @@
         .movie__info {
             padding-bottom: 10px;
             border-bottom: 1.5px dotted gray;
-            #movieName {
-                font-size: 20px;
-                color: red;
-                font-weight: 500;
-                margin-bottom: 10px;
+            p {
+                margin-bottom: 8px;
             }
-            #cineInfo,
-            #movieTime {
-                font-size: 15px;
-                margin-bottom: 5px;
+            #redLabel {
+                display: inline-block;
+                text-align: center;
+                width: 45px;
+                color: #fff;
+                background-color: $color-orange-0;
+                border: 1px solid $color-orange-0;
+                border-radius: 5px;
+                margin-right: 8px;
+                padding: 0 5px;
+            }
+            #greenLabel {
+                display: inline-block;
+                text-align: center;
+                width: 45px;
+                color: #fff;
+                background-color: $color-green-0;
+                border: 1px solid $color-green-0;
+                border-radius: 5px;
+                margin-right: 8px;
+                padding: 0 5px;
+            }
+            #movieName {
+                font-size: 18px;
+                font-weight: 600;
             }
         }
         .ticket__info {

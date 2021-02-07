@@ -71,7 +71,7 @@ class HomePage extends Component {
 					this.props.userAlreadyLoggedIn(result.data);
 				})
 				.catch((err) => {
-					this.props.history.push("/userLogin");
+					this.props.history.push({ pathname: "/userLogin", state: { message: err.response.data.message } });
 				}); 
 		}
 	};

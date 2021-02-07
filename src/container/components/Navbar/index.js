@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import defaultAva from "../../../assets/img/avatar.png";
-import axios from "axios";
 class Navbar extends Component {
 	handleLogout = (history) => {
 		window.localStorage.removeItem("accessToken");
@@ -36,9 +35,15 @@ class Navbar extends Component {
 					<div className='userAvatar'>
 						<img src={defaultAva} />
 					</div>
-					<NavLink className='nav-link login_logout' to='/userLogin'>
+					<button
+						className='login_logout'
+						onClick={() => {
+							history.push("/userLogin");
+						}}
+						type='button'
+					>
 						Đăng nhập
-					</NavLink>	
+					</button>
 				</>
 			);
 		}
@@ -112,7 +117,10 @@ class Navbar extends Component {
 											</NavLink>
 										</li>
 										<li className='nav-item'>
-											{this.handleIsLogin(isLoggedIn, user)}
+											{this.handleIsLogin(
+												isLoggedIn,
+												user
+											)}
 										</li>
 									</ul>
 								</div>
