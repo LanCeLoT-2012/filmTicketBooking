@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 import CGVLogo from "../../../../assets/img/cgv.png";
 import BHDStarLogo from "../../../../assets/img/bhd.png";
@@ -8,10 +7,6 @@ import CinestarLogo from "../../../../assets/img/cinestar.png";
 import LotteCinemaLogo from "../../../../assets/img/lotte.png";
 import MegaGSLogo from "../../../../assets/img/megags.png";
 export default class Showtimes extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	getUnique = (value, index, self) => {
 		return self.indexOf(value) === index;
 	};
@@ -19,7 +14,7 @@ export default class Showtimes extends Component {
 	renderCinemaLogo = (showTimeCinemas) => {
 		let cinemaBrands = [];
 		showTimeCinemas.map((cinema) => {
-			cinemaBrands.push(cinema.cinemaId.cinemaBrand.brandName);
+			return cinemaBrands.push(cinema.cinemaId.cinemaBrand.brandName);
 		});
 		const uniqueCinemas = cinemaBrands.filter(this.getUnique);
 		return uniqueCinemas.map((cinemaBrand, index) => {
@@ -44,6 +39,8 @@ export default class Showtimes extends Component {
 				case "Galaxy Cinema":
 					cinemaLogo = GalaxyCinemaLogo;
 					break;
+				default:
+					break;
 			}
 			return (
 				<li className='nav-item' key={index}>
@@ -64,7 +61,7 @@ export default class Showtimes extends Component {
 	};
 
 	handleTicketCheckout = (showTimeId, startingTime) => {
-		this.props.history.push(`/checkout/` + `${showTimeId}` + `?startingTime=${startingTime}`);
+		this.props.history.push(`/checkout/${showTimeId}?startingTime=${startingTime}`);
 	}
 
 	renderShowtimes = (showTimes, showTimeId) => {
@@ -78,38 +75,53 @@ export default class Showtimes extends Component {
 	renderShowtimesInfomation = (filmShowtimes, cinemaName) => {
 		return filmShowtimes.map((showTime, index) => {
 			let showingDate = new Date(`${showTime.showDate}`);
-			if (showTime.cinemaId.cinemaBrand.brandName === cinemaName) {
-				return (
-					<div className="showTime" key={index}>
-						<div className='cinema_info'>
-							<p>
-								<span className='cinemaName' id={cinemaName.replace(" ", "")}>
-									{cinemaName}
-								</span>
-								<span id='cinemaLocation'>
-									{" "}
-									- {showTime.cinemaId.cinemaName}
-								</span>
-							</p>
-							<p id='cinemaAdd'>{showTime.cinemaId.address}</p>
-							<p>Ngày chiếu: {showingDate.toLocaleDateString()}</p>
-						</div>
-						<div className='showTimes row'>
-							<div className='left_Col col-3'>Các suất chiếu:</div>
-							<div className='right_Col col-9'>
-								{this.renderShowtimes(showTime.showTimes, showTime._id)}
+			return (
+				<div>
+					{showTime.cinemaId.cinemaBrand.brandName === cinemaName && (
+						<div className='showTime' key={index}>
+							<div className='cinema_info'>
+								<p>
+									<span
+										className='cinemaName'
+										id={cinemaName.replace(" ", "")}
+									>
+										{cinemaName}
+									</span>
+									<span id='cinemaLocation'>
+										{" "}
+										- {showTime.cinemaId.cinemaName}
+									</span>
+								</p>
+								<p id='cinemaAdd'>
+									{showTime.cinemaId.address}
+								</p>
+								<p>
+									Ngày chiếu:{" "}
+									{showingDate.toLocaleDateString()}
+								</p>
+							</div>
+							<div className='showTimes row'>
+								<div className='left_Col col-3'>
+									Các suất chiếu:
+								</div>
+								<div className='right_Col col-9'>
+									{this.renderShowtimes(
+										showTime.showTimes,
+										showTime._id
+									)}
+								</div>
 							</div>
 						</div>
-					</div>
-				);
-			}
+					)}
+				</div>
+			);
 		});
 	}
 
 	renderCinemaShowtimeTabs = (showTimeCinemas, filmShowtimes) => {
 		let cinemaBrands = [];
 		showTimeCinemas.map((cinema) => {
-			cinemaBrands.push(cinema.cinemaId.cinemaBrand.brandName);
+			return cinemaBrands.push(cinema.cinemaId.cinemaBrand.brandName);
 		});
 		const uniqueCinemas = cinemaBrands.filter(this.getUnique);
 		return uniqueCinemas.map((cinemaName, index) => {
