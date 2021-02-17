@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 
 export default class NormalSeat extends Component {
-    render() {
+	render() {
+		const { seatInfomation, rowPosition, colPosition } = this.props;
         return (
-			<div className='seatCol col-1'>
-				<div id='seat'></div>
-			</div>
+			<div id='normalSeat'></div>
 		);
     }
 }

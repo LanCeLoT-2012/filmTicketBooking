@@ -72,6 +72,7 @@ export default class UserRegister extends Component {
 				>
 					<img
 						data-dismiss='modal'
+						alt="This is a dog"
 						src={`https://firebasestorage.googleapis.com/v0/b/filmticketbooking-cae81.appspot.com/o/avatar-${avatarImg}.png?alt=media`}
 					/>
 				</div>
@@ -95,7 +96,7 @@ export default class UserRegister extends Component {
 										data-toggle='modal'
 										data-target='#avatars'
 									>
-										<img src={this.state.avatar} />
+										<img src={this.state.avatar} alt="This is a dog"/>
 										<i class='fa fa-plus-circle'></i>
 									</button>
 								</div>

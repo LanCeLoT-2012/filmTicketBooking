@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { cloneElement, Component } from "react";
 import NormalSeat from "./NormalSeat";
 import SweetBox from "./SweetBox";
 import VipSeat from "./vipSeat";
@@ -17,8 +17,10 @@ export default class Checkout extends Component {
 		super(props);
 		this.state = {
 			loading: true,
-			detailShowtime: {}
-		}
+			detailShowtime: {},
+			bookingSeats: [],
+			ticketPrice: 0,
+		};
 	}
 
 	renderCinemaLogo = (cinemaBrandName) => {
@@ -36,13 +38,13 @@ export default class Checkout extends Component {
 			case "Mega GS":
 				return <img src={MegaGSLogo} alt='MegaGSLogo' />;
 		}
-	}
+	};
 
 	renderFilmLabel = (filmLabel) => {
 		if (filmLabel === "P") {
 			return "greenLabel";
-		} else return "redLabel"
-	}
+		} else return "redLabel";
+	};
 
 	renderShowDate = (showDate) => {
 		let currentDate = new Date();
@@ -52,32 +54,168 @@ export default class Checkout extends Component {
 		if (currentDate === showDate) {
 			return <span>Hôm nay</span>;
 		} else {
-			return <span>{showingDate}</span>
+			return <span>{showingDate}</span>;
 		}
+	};
+
+	handleChooseSeats = (seatInformation, rowPosition, colPosition) => {
+		let { bookingSeats, ticketPrice } = this.state;
+		let seatPrice = parseFloat(seatInformation.price);
+		const seatPosition = `${rowPosition} - ${colPosition}`;
+		if (bookingSeats.includes(seatPosition)) {
+			let index = bookingSeats.indexOf(seatPosition);
+			bookingSeats.splice(index, 1);
+			ticketPrice -= seatPrice;
+		} else {
+			bookingSeats.push(`${rowPosition} - ${colPosition}`);
+			ticketPrice += seatPrice;
+		}
+		this.setState({
+			bookingSeats,
+			ticketPrice
+		})
 	}
+
+	renderBookingSeats = (bookingSeats) => {
+		return bookingSeats.map((bookingSeat) => {
+			return `${bookingSeat} `
+		})
+	}
+
+	renderNormalSeats = (normalSeats, leftRightCenter) => {
+		let columnSize;
+		let rowPositionArr = [];
+		let colPositionArr = [];
+		if (leftRightCenter === "left") {
+			columnSize = 6;
+			rowPositionArr = ["A", "B", "C", "D", "E", "F"];
+			colPositionArr = ["1", "2"];
+		} else if (leftRightCenter === "right") {
+			columnSize = 6;
+			rowPositionArr = ["A", "B", "C", "D", "E", "F"];
+			colPositionArr = ["9", "10"];
+		} else if (leftRightCenter === "center") {
+			columnSize = 2;
+			rowPositionArr = ["A", "B", "C", "D"];
+			colPositionArr = ["3", "4", "5", "6", "7", "8"];
+		}
+		let seatIndex = -1;
+		return rowPositionArr.map((rowPosition, index) => {
+			return colPositionArr.map((colPosition, index) => {
+				seatIndex++;
+				let isSeatChoosing = this.state.bookingSeats.includes(`${rowPosition} - ${colPosition}`);
+				return (
+					<button className={`seatCol col-${columnSize}`} onClick={() => { this.handleChooseSeats(normalSeats[seatIndex], rowPosition, colPosition) }}>
+						<div id={isSeatChoosing ? "choosingSeat" : "normalSeat"}></div>
+					</button>
+				)
+			})
+		})
+	};
+
+	renderVipSeats = (vipSeats) => {
+		const columnSize = 2;
+		const rowPositionArr = ["E", "F"];
+		const colPositionArr = ["3", "4", "5", "6", "7", "8"];
+		let seatIndex = -1;
+		return rowPositionArr.map((rowPosition, index) => {
+			return colPositionArr.map((colPosition, index) => {
+				seatIndex++;
+				let isSeatChoosing = this.state.bookingSeats.includes(`${rowPosition} - ${colPosition}`);
+				return (
+					<button className={`seatCol col-${columnSize}`} onClick={() => { this.handleChooseSeats(vipSeats[seatIndex], rowPosition, colPosition) }}>
+						<div id={isSeatChoosing ? "choosingSeat" : "vipSeat"}></div>
+					</button>
+				); 
+			})
+		})
+	};
+
+	renderSweetBoxs = (sweetBoxs) => {
+		const rowPositionArr = ["G"];
+		const colPositionArr = ["1 - 2", "3 - 4", "5 - 6", "7 - 8", "9 - 10"];
+		let seatIndex = -1;
+		return rowPositionArr.map((rowPosition, rowIndex) => {
+			return colPositionArr.map((colPosition, colIndex) => {
+				seatIndex++;
+				let isSeatChoosing = this.state.bookingSeats.includes(`${rowPosition} - ${colPosition}`);
+				if (seatIndex === 0) {
+					return (
+						<>
+							<button className='sweetCol col-2' onClick={() => { this.handleChooseSeats(sweetBoxs[seatIndex], rowPosition, colPosition) }}>
+								<div id={isSeatChoosing ? "choosingSeat" : "sweetBox"}></div>
+							</button>
+							<div className='walking_way col-1'></div>
+						</>
+					);
+				} else if (seatIndex === 4) {
+					return (
+						<>
+							<div className='walking_way col-1'></div>
+							<button className='sweetCol col-2' onClick={() => { this.handleChooseSeats(sweetBoxs[seatIndex], rowPosition, colPosition) }}>
+								<div id={isSeatChoosing ? "choosingSeat" : "sweetBox"}></div>
+							</button>
+						</>
+					);
+				} else {
+					return (
+						<>
+							<button className='sweetCol col-2' onClick={() => { this.handleChooseSeats(sweetBoxs[seatIndex], rowPosition, colPosition) }}>
+								<div id={isSeatChoosing ? "choosingSeat" : "sweetBox"}></div>
+							</button>
+						</>
+					);
+				}
+			})
+		})
+	};
 
 	componentDidMount = () => {
 		const { showTimeId } = this.props.match.params;
 		axios({
 			url: `http://localhost:5000/api/showtimes/detailShowtime/${showTimeId}`,
-			method: "GET"
+			method: "GET",
 		}).then((result) => {
 			this.setState({
 				detailShowtime: result.data,
-				loading: false
-			})
-		})
-	}
+				loading: false,
+			});
+		});
+	};
 
 	render() {
-		const { detailShowtime } = this.state;	
-		if(this.state.loading === true) {
-			return <Loading />
+		if (this.state.loading === true) {
+			return <Loading />;
 		} else {
-			let cinemaBrandName = detailShowtime.cinemaId.cinemaBrand.brandName.replace(" ", "");
+			const { detailShowtime } = this.state;
+			const {
+				normalSeats,
+				vipSeats,
+				sweetBoxs,
+			} = detailShowtime.theaterId;
+			/* --------------------------------- Divider -------------------------------- */
+			let cinemaBrandName = detailShowtime.cinemaId.cinemaBrand.brandName.replace(
+				" ",
+				""
+			);
 			let queryString = this.props.location.search;
+
 			const urlParams = new URLSearchParams(queryString);
 			const startingTime = urlParams.get("startingTime");
+
+			let leftSideSeats = [];
+			let rightSideSeats = [];
+			let centerSeatsSection = [];
+			normalSeats.map((seat, index) => {
+				if (0 <= index && index <= 11) {
+					leftSideSeats.push(seat);
+				} else if (32 <= index && index <= 43) {
+					rightSideSeats.push(seat);
+				} else {
+					centerSeatsSection.push(seat);
+				}
+			});
+			/* --------------------------------- Divider -------------------------------- */
 			return (
 				<div className='chooseYourSeat'>
 					<div className='container'>
@@ -85,11 +223,46 @@ export default class Checkout extends Component {
 							<div className='cineSection col-9'>
 								<div className='cineInformation'>
 									<div className='cinema'>
-										{this.renderCinemaLogo(detailShowtime.cinemaId.cinemaBrand.brandName)}
+										{this.renderCinemaLogo(
+											detailShowtime.cinemaId.cinemaBrand
+												.brandName
+										)}
 										<div className='information'>
 											<div>
-												<p><span id={cinemaBrandName}>{detailShowtime.cinemaId.cinemaBrand.brandName}</span><span> - {detailShowtime.cinemaId.cinemaName}</span></p>
-												<p id='showTimes'>{this.renderShowDate(detailShowtime.showDate)} - <span>{startingTime}</span> - <span>{detailShowtime.theaterId.theaterName}</span></p>
+												<p>
+													<span id={cinemaBrandName}>
+														{
+															detailShowtime
+																.cinemaId
+																.cinemaBrand
+																.brandName
+														}
+													</span>
+													<span>
+														{" "}
+														-{" "}
+														{
+															detailShowtime
+																.cinemaId
+																.cinemaName
+														}
+													</span>
+												</p>
+												<p id='showTimes'>
+													{this.renderShowDate(
+														detailShowtime.showDate
+													)}{" "}
+													-{" "}
+													<span>{startingTime}</span>{" "}
+													-{" "}
+													<span>
+														{
+															detailShowtime
+																.theaterId
+																.theaterName
+														}
+													</span>
+												</p>
 											</div>
 										</div>
 									</div>
@@ -97,120 +270,112 @@ export default class Checkout extends Component {
 										<div id='mainScreen'></div>
 										<p>Màn hình</p>
 									</div>
-									<div className='cineSeats'>
-										<div className='seatsRow row'>
-											<NormalSeat />
-											<NormalSeat />
-											<div className='walkingWay col-1'></div>
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<div className='walkingWay col-1'></div>
-											<NormalSeat />
-											<NormalSeat />
-										</div>
-										<div className='seatsRow row'>
-											<NormalSeat />
-											<NormalSeat />
-											<div className='walkingWay col-1'></div>
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<div className='walkingWay col-1'></div>
-											<NormalSeat />
-											<NormalSeat />
-										</div>
-										<div className='seatsRow row'>
-											<NormalSeat />
-											<NormalSeat />
-											<div className='walkingWay col-1'></div>
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<div className='walkingWay col-1'></div>
-											<NormalSeat />
-											<NormalSeat />
-										</div>
-										<div className='emptyRow'></div>
-										<div className='seatsRow row'>
-											<NormalSeat />
-											<NormalSeat />
-											<div className='walkingWay col-1'></div>
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<NormalSeat />
-											<div className='walkingWay col-1'></div>
-											<NormalSeat />
-											<NormalSeat />
-										</div>
-										<div className='seatsRow row'>
-											<NormalSeat />
-											<NormalSeat />
-											<div className='walkingWay col-1'></div>
-											<VipSeat />
-											<VipSeat />
-											<VipSeat />
-											<VipSeat />
-											<VipSeat />
-											<VipSeat />
-											<div className='walkingWay col-1'></div>
-											<NormalSeat />
-											<NormalSeat />
-										</div>
-										<div className='seatsRow row'>
-											<NormalSeat />
-											<NormalSeat />
-											<div className='walkingWay col-1'></div>
-											<VipSeat />
-											<VipSeat />
-											<VipSeat />
-											<VipSeat />
-											<VipSeat />
-											<VipSeat />
-											<div className='walkingWay col-1'></div>
-											<NormalSeat />
-											<NormalSeat />
-										</div>
-										<div className='emptyRow'></div>
-										<div className='seatsRow row'>
-											<SweetBox />
-											<div className='walkingWay col-1'></div>
-											<SweetBox />
-											<SweetBox />
-											<SweetBox />
-											<div className='walkingWay col-1'></div>
-											<SweetBox />
-										</div>
-									</div>
-									<div className='seatType'>
-										<div className='row seatType__row'>
-											<div className='normalSeat col-3'>
-												<div id='normalType'></div>
-												<p>Ghế thường</p>
+									<div className='seats_Section'>
+										<div className='seats_Position'>
+											<div className='col_Position text-white row'>
+												<div className='column_pos col-1'>
+													1
+												</div>
+												<div className='column_pos col-1'>
+													2
+												</div>
+												<div className='column_pos col-1'></div>
+												<div className='column_pos col-1'>
+													3
+												</div>
+												<div className='column_pos col-1'>
+													4
+												</div>
+												<div className='column_pos col-1'>
+													5
+												</div>
+												<div className='column_pos col-1'>
+													6
+												</div>
+												<div className='column_pos col-1'>
+													7
+												</div>
+												<div className='column_pos col-1'>
+													8
+												</div>
+												<div className='column_pos col-1'></div>
+												<div className='column_pos col-1'>
+													9
+												</div>
+												<div className='column_pos col-1'>
+													10
+												</div>
 											</div>
-											<div className='vipSeat col-3'>
-												<div id='vipType'></div>
-												<p>Ghế VIP</p>
+											<div className='row_Position'>
+												<div className='row_positions'>
+													<p>A</p>
+													<p>B</p>
+													<p>C</p>
+													<p>D</p>
+													<p>E</p>
+													<p>F</p>
+													<p>G</p>
+												</div>
 											</div>
-											<div className='sweatBox col-3'>
-												<div id='sweatType'></div>
-												<p>Ghế đôi</p>
+										</div>
+										<div className='cineSeats row'>
+											<div className='left_side_seats col-2'>
+												<div className='normal_seats row'>
+													{this.renderNormalSeats(
+														leftSideSeats,
+														"left"
+													)}
+												</div>
 											</div>
-											<div className='choosen__Seat col-3'>
-												<div id='choosenType'></div>
-												<p>Ghế đã chọn</p>
+											<div className='walking_way col-1'></div>
+											<div className='center_seats_section col-6'>
+												<div className='normal_seats row'>
+													{this.renderNormalSeats(
+														centerSeatsSection,
+														"center"
+													)}
+												</div>
+												<div className='vip_seats row'>
+													{this.renderVipSeats(
+														vipSeats
+													)}
+												</div>
+											</div>
+											<div className='walking_way col-1'></div>
+											<div className='right_side_seats col-2'>
+												<div className='normal_seats row'>
+													{this.renderNormalSeats(
+														rightSideSeats,
+														"right"
+													)}
+												</div>
+											</div>
+											<div className='sweetBoxs_section col-12'>
+												<div className='row'>
+													{this.renderSweetBoxs(
+														sweetBoxs
+													)}
+												</div>
+											</div>
+											<div className='seatType'>
+												<div className='row seatType__row'>
+													<div className='normalSeat col-3'>
+														<div id='normalType'></div>
+														<p>Ghế thường</p>
+													</div>
+													<div className='vipSeat col-3'>
+														<div id='vipType'></div>
+														<p>Ghế VIP</p>
+													</div>
+													<div className='sweatBox col-3'>
+														<div id='sweatType'></div>
+														<p>Ghế đôi</p>
+													</div>
+													<div className='choosing__Seat col-3'>
+														<div id='choosingType'></div>
+														<p>Ghế đang chọn</p>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -218,13 +383,38 @@ export default class Checkout extends Component {
 							</div>
 							<div className='yourTicket col-3'>
 								<div className='movie__info'>
-									<p><span id={this.renderFilmLabel(detailShowtime.filmId.filmLabel)}>{detailShowtime.filmId.filmLabel}</span><span id="movieName"> - {detailShowtime.filmId.filmName}</span></p>
-									<p id='cinemaName'>{detailShowtime.cinemaId.cinemaName}</p>
-									<p id='showDate'>{this.renderShowDate(detailShowtime.showDate)} - <span>{startingTime}</span> - <span>{detailShowtime.theaterId.theaterName}</span></p>
+									<p>
+										<span
+											id={this.renderFilmLabel(
+												detailShowtime.filmId.filmLabel
+											)}
+										>
+											{detailShowtime.filmId.filmLabel}
+										</span>
+										<span id='movieName'>
+											{" "}
+											- {detailShowtime.filmId.filmName}
+										</span>
+									</p>
+									<p id='cinemaName'>
+										{detailShowtime.cinemaId.cinemaName}
+									</p>
+									<p id='showDate'>
+										{this.renderShowDate(
+											detailShowtime.showDate
+										)}{" "}
+										- <span>{startingTime}</span> -{" "}
+										<span>
+											{
+												detailShowtime.theaterId
+													.theaterName
+											}
+										</span>
+									</p>
 								</div>
 								<div className='ticket__info'>
 									<p>
-										<span id='seatValue'>Ghế:</span>
+										<span id='seatValue'>Ghế: {this.renderBookingSeats(this.state.bookingSeats)}</span>
 									</p>
 									<input
 										type='text'
@@ -262,7 +452,7 @@ export default class Checkout extends Component {
 								</div>
 								<div className='complete'>
 									<p id='summary'>
-										<span id='total'>90.000 Đồng</span>
+										<span id='total'>{this.state.ticketPrice+".000"}</span>
 									</p>
 									<button type='button' id='payAction'>
 										Thanh toán

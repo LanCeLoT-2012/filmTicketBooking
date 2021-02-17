@@ -94,7 +94,7 @@ class MovieDetail extends Component {
 					/>
 					<div className='get__Detail'>
 						<div className='background__blur'>
-							<img id='blur__img' src={film.thumbnail} />
+							<img id='blur__img' src={film.thumbnail} alt="This is a dog" />
 							<div className='black__overlay' />
 						</div>
 						<div className='movie__Detail'>
@@ -102,7 +102,7 @@ class MovieDetail extends Component {
 								<div className='detail__Row row'>
 									<div className='show__detail__left col-12 col-sm-8 col-md-9'>
 										<div className='img__trailer'>
-											<img src={film.thumbnail} />
+											<img src={film.thumbnail} alt="This is a dog" />
 											<ModalVideo
 												channel='youtube'
 												isOpen={this.state.isOpen}
@@ -165,11 +165,11 @@ class MovieDetail extends Component {
 												className='rating__stars'
 											>
 												<div>
-													<img src={ratingStar} />
-													<img src={ratingStar} />
-													<img src={ratingStar} />
-													<img src={ratingStar} />
-													<img src={ratingStar} />
+													<img src={ratingStar} alt="This is a dog" />
+													<img src={ratingStar} alt="This is a dog" />
+													<img src={ratingStar} alt="This is a dog" />
+													<img src={ratingStar} alt="This is a dog" />
+													<img src={ratingStar} alt="This is a dog" />
 												</div>
 											</div>
 											<div className='rating__numbers'>

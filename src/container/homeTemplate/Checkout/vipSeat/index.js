@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 
 export default class VipSeat extends Component {
-    render() {
+	render() {
+		const { seatInfomation, rowPosition, colPosition } = this.props;
         return (
-			<div className='seatCol col-1'>
-				<div id='vipSeat'></div>
-			</div>
+			<div id='vipSeat'></div>
 		);
     }
 }
