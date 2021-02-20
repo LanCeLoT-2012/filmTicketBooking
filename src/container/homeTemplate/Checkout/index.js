@@ -1,7 +1,4 @@
 import React, { cloneElement, Component } from "react";
-import NormalSeat from "./NormalSeat";
-import SweetBox from "./SweetBox";
-import VipSeat from "./vipSeat";
 import Loading from "../../components/Loader/index";
 import axios from "axios";
 
@@ -18,7 +15,8 @@ export default class Checkout extends Component {
 		this.state = {
 			loading: true,
 			detailShowtime: {},
-			bookingSeats: [],
+			bookingSeatsPosition: [],
+			bookingSeatIds: [],
 			ticketPrice: 0,
 		};
 	}
@@ -59,28 +57,38 @@ export default class Checkout extends Component {
 	};
 
 	handleChooseSeats = (seatInformation, rowPosition, colPosition) => {
-		let { bookingSeats, ticketPrice } = this.state;
+		console.log(seatInformation, rowPosition, colPosition);
+		let { bookingSeatsPosition, ticketPrice, bookingSeatIds } = this.state;
+		// Get seat's price 
 		let seatPrice = parseFloat(seatInformation.price);
+		// Get seat's position
 		const seatPosition = `${rowPosition} - ${colPosition}`;
-		if (bookingSeats.includes(seatPosition)) {
-			let index = bookingSeats.indexOf(seatPosition);
-			bookingSeats.splice(index, 1);
+		// Get seat's _id
+		const seatId = seatInformation._id;
+		if (bookingSeatIds.includes(seatId)) {
+			let indexPosition = bookingSeatsPosition.indexOf(seatPosition);
+			bookingSeatsPosition.splice(indexPosition, 1);
+			let indexId = bookingSeatIds.indexOf(seatInformation._id);
+			bookingSeatIds.splice(indexId, 1);
 			ticketPrice -= seatPrice;
 		} else {
-			bookingSeats.push(`${rowPosition} - ${colPosition}`);
+			bookingSeatsPosition.push(seatPosition);
+			console.log(bookingSeatsPosition);
+			bookingSeatIds.push(seatId);
+			console.log(bookingSeatIds);
 			ticketPrice += seatPrice;
 		}
 		this.setState({
-			bookingSeats,
-			ticketPrice
-		})
-	}
+			bookingSeatsPosition,
+			ticketPrice,
+		});
+	};
 
 	renderBookingSeats = (bookingSeats) => {
 		return bookingSeats.map((bookingSeat) => {
-			return `${bookingSeat} `
-		})
-	}
+			return `${bookingSeat} `;
+		});
+	};
 
 	renderNormalSeats = (normalSeats, leftRightCenter) => {
 		let columnSize;
@@ -103,14 +111,43 @@ export default class Checkout extends Component {
 		return rowPositionArr.map((rowPosition, index) => {
 			return colPositionArr.map((colPosition, index) => {
 				seatIndex++;
-				let isSeatChoosing = this.state.bookingSeats.includes(`${rowPosition} - ${colPosition}`);
-				return (
-					<button className={`seatCol col-${columnSize}`} onClick={() => { this.handleChooseSeats(normalSeats[seatIndex], rowPosition, colPosition) }}>
-						<div id={isSeatChoosing ? "choosingSeat" : "normalSeat"}></div>
-					</button>
-				)
-			})
-		})
+				if (normalSeats[seatIndex].status === true) {
+					return (
+						<button key={normalSeats[seatIndex]._id} className={`seatCol col-${columnSize}`}>
+							<div id='choosenType'>
+								<span>X</span>
+							</div>
+						</button>
+					);
+				} else {
+					let isSeatChoosing = this.state.bookingSeatsPosition.includes(
+						`${rowPosition} - ${colPosition}`
+					);
+					console.log(normalSeats[seatIndex]._id);
+					return (
+						<button
+							key={normalSeats[seatIndex]._id}
+							className={`seatCol col-${columnSize}`}
+							onClick={() => {
+								this.handleChooseSeats(
+									normalSeats[seatIndex]._id,
+									rowPosition,
+									colPosition
+								);
+							}}
+						>
+							<div
+								id={
+									isSeatChoosing
+										? "choosingSeat"
+										: "normalSeat"
+								}
+							></div>
+						</button>
+					);
+				}
+			});
+		});
 	};
 
 	renderVipSeats = (vipSeats) => {
@@ -121,14 +158,28 @@ export default class Checkout extends Component {
 		return rowPositionArr.map((rowPosition, index) => {
 			return colPositionArr.map((colPosition, index) => {
 				seatIndex++;
-				let isSeatChoosing = this.state.bookingSeats.includes(`${rowPosition} - ${colPosition}`);
+				let isSeatChoosing = this.state.bookingSeatsPosition.includes(
+					`${rowPosition} - ${colPosition}`
+				);
 				return (
-					<button className={`seatCol col-${columnSize}`} onClick={() => { this.handleChooseSeats(vipSeats[seatIndex], rowPosition, colPosition) }}>
-						<div id={isSeatChoosing ? "choosingSeat" : "vipSeat"}></div>
+					<button
+						key={vipSeats[seatIndex]._id}
+						className={`seatCol col-${columnSize}`}
+						onClick={() => {
+							this.handleChooseSeats(
+								vipSeats[seatIndex],
+								rowPosition,
+								colPosition
+							);
+						}}
+					>
+						<div
+							id={isSeatChoosing ? "choosingSeat" : "vipSeat"}
+						></div>
 					</button>
-				); 
-			})
-		})
+				);
+			});
+		});
 	};
 
 	renderSweetBoxs = (sweetBoxs) => {
@@ -138,36 +189,83 @@ export default class Checkout extends Component {
 		return rowPositionArr.map((rowPosition, rowIndex) => {
 			return colPositionArr.map((colPosition, colIndex) => {
 				seatIndex++;
-				let isSeatChoosing = this.state.bookingSeats.includes(`${rowPosition} - ${colPosition}`);
+				let isSeatChoosing = this.state.bookingSeatsPosition.includes(
+					`${rowPosition} - ${colPosition}`
+				);
 				if (seatIndex === 0) {
 					return (
-						<>
-							<button className='sweetCol col-2' onClick={() => { this.handleChooseSeats(sweetBoxs[seatIndex], rowPosition, colPosition) }}>
-								<div id={isSeatChoosing ? "choosingSeat" : "sweetBox"}></div>
+						<template key={sweetBoxs[seatIndex]._id}>
+							<button
+								className='sweetCol col-2'
+								onClick={() => {
+									this.handleChooseSeats(
+										sweetBoxs[seatIndex],
+										rowPosition,
+										colPosition
+									);
+								}}
+							>
+								<div
+									id={
+										isSeatChoosing
+											? "choosingSeat"
+											: "sweetBox"
+									}
+								></div>
 							</button>
 							<div className='walking_way col-1'></div>
-						</>
+						</template>
 					);
 				} else if (seatIndex === 4) {
 					return (
-						<>
+						<template key={sweetBoxs[seatIndex]._id}>
 							<div className='walking_way col-1'></div>
-							<button className='sweetCol col-2' onClick={() => { this.handleChooseSeats(sweetBoxs[seatIndex], rowPosition, colPosition) }}>
-								<div id={isSeatChoosing ? "choosingSeat" : "sweetBox"}></div>
+							<button
+								className='sweetCol col-2'
+								onClick={() => {
+									this.handleChooseSeats(
+										sweetBoxs[seatIndex],
+										rowPosition,
+										colPosition
+									);
+								}}
+							>
+								<div
+									id={
+										isSeatChoosing
+											? "choosingSeat"
+											: "sweetBox"
+									}
+								></div>
 							</button>
-						</>
+						</template>
 					);
 				} else {
 					return (
-						<>
-							<button className='sweetCol col-2' onClick={() => { this.handleChooseSeats(sweetBoxs[seatIndex], rowPosition, colPosition) }}>
-								<div id={isSeatChoosing ? "choosingSeat" : "sweetBox"}></div>
+						<template key={sweetBoxs[seatIndex]._id}>
+							<button
+								className='sweetCol col-2'
+								onClick={() => {
+									this.handleChooseSeats(
+										sweetBoxs[seatIndex],
+										rowPosition,
+										colPosition
+									);
+								}}
+							>
+								<div
+									id={
+										isSeatChoosing
+											? "choosingSeat"
+											: "sweetBox"
+									}
+								></div>
 							</button>
-						</>
+						</template>
 					);
 				}
-			})
-		})
+			});
+		});
 	};
 
 	componentDidMount = () => {
@@ -375,6 +473,14 @@ export default class Checkout extends Component {
 														<div id='choosingType'></div>
 														<p>Ghế đang chọn</p>
 													</div>
+													<div className='choosen__Seat col'>
+														<div id='choosenType'>
+															<span>X</span>
+														</div>
+														<p>
+															Ghế đã có người chọn
+														</p>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -414,7 +520,12 @@ export default class Checkout extends Component {
 								</div>
 								<div className='ticket__info'>
 									<p>
-										<span id='seatValue'>Ghế: {this.renderBookingSeats(this.state.bookingSeats)}</span>
+										<span id='seatValue'>
+											Ghế:{" "}
+											{this.renderBookingSeats(
+												this.state.bookingSeatsPosition
+											)}
+										</span>
 									</p>
 									<input
 										type='text'
@@ -452,7 +563,9 @@ export default class Checkout extends Component {
 								</div>
 								<div className='complete'>
 									<p id='summary'>
-										<span id='total'>{this.state.ticketPrice+".000"}</span>
+										<span id='total'>
+											{this.state.ticketPrice + ".000"}
+										</span>
 									</p>
 									<button type='button' id='payAction'>
 										Thanh toán

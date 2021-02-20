@@ -56,12 +56,12 @@ class Navbar extends Component {
 				<div className='cine-navbar'>
 					<nav className='navbar navbar-expand-lg'>
 						<div className='container'>
-							<div className='col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 nav__left__col'>
+							<div className='col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 nav__left__col'>
 								<NavLink className='navbar-brand' to='/'>
 									Fan Xi Nê
 								</NavLink>
 							</div>
-							<div className='col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7 nav__right__col'>
+							<div className='col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 nav__right__col'>
 								<div
 									className='collapse navbar-collapse'
 									id='navbarNav'
@@ -92,10 +92,10 @@ class Navbar extends Component {
 												Trang chủ
 											</NavLink>
 										</li>
-										{/* <li className='nav-item'>
+										<li className='nav-item'>
 											<NavLink
 												className='nav-link'
-												to='/showtime'
+												to=''
 											>
 												Lịch chiếu
 											</NavLink>
@@ -103,15 +103,15 @@ class Navbar extends Component {
 										<li className='nav-item'>
 											<NavLink
 												className='nav-link'
-												to='/cinema'
+												to=''
 											>
 												Cụm rạp
 											</NavLink>
-										</li> */}
+										</li>
 										<li className='nav-item'>
 											<NavLink
 												className='nav-link'
-												to='/news'
+												to=''
 											>
 												Tin tức
 											</NavLink>
