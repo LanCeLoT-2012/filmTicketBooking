@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "../../sass/Layout/_userLogin.scss";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 import { connect } from "react-redux";
+import axios from "axios";
+import JWT from "jsonwebtoken";
 class UserLogin extends Component {
 	constructor(props) {
 		super(props);
@@ -28,12 +29,17 @@ class UserLogin extends Component {
 			data: this.state,
 		})
 			.then((result) => {
-				this.props.userLoginSuccess(result.data.user);
-				window.localStorage.setItem(
-					"accessToken",
-					result.data.accessToken
-				);
+				const decodedToken = JWT.decode(result.data.accessToken);
+				const userInformation = decodedToken.foundedUser;
+				// Set user's accessToken to localStorage
+				window.localStorage.setItem("accessToken", result.data.accessToken);
+				// Set token expired's time to localStorage
+				window.localStorage.setItem("expTime", decodedToken.exp);
+				// Set userInformation to localStorage
+				window.localStorage.setItem("userInformation", JSON.stringify(userInformation));
 				document.getElementById("resNoti").innerHTML = result.data.message;
+				// Direct user to HomePage
+				this.props.userAlreadyLoggedIn();
 				setTimeout(() => {
 					this.props.history.push("/");
 				}, 1000)
@@ -90,20 +96,13 @@ class UserLogin extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		isLoggedIn: state.userLogonReducer.isLoggedIn,
-		user: state.userLogonReducer.user,
-		loading: state.userLogonReducer.loading,
-	};
-};
-
 const mapDispatchToProps = (dispatch) => {
 	return {
-		userLoginSuccess: (data) => {
+		userAlreadyLoggedIn: (data) => {
 			dispatch({ type: "USER_LOGIN_SUCCESS", payload: data });
 		},
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserLogin);
+export default connect(null, mapDispatchToProps)(UserLogin);
+

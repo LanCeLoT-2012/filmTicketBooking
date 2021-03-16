@@ -147,7 +147,8 @@
             }
         }
     }
-    #avatars, .show {
+    #avatars,
+    .show {
         padding-right: 0;
         .modal-dialog {
             .modal-content {
@@ -190,32 +191,44 @@
     }
 }
 
-@media screen and (max-width: 577px) {
+@media screen and (max-width: 426px) {
     .userLogin,
     .userRegister {
         .userLoginForm,
         .userRegisterForm {
             display: block;
-            width: 250px;
+            width: 300px;
 
             form {
                 .header__form {
                     h1 {
-                        font-size: 32px;
+                        font-size: 30px;
+                        margin-bottom: 15px;
                     }
                 }
 
                 .header__body {
+                    .userAvatar {
+                        height: 60px;
+                        width: 60px;
+                        button {
+                            i {
+                                font-size: 16px;
+                            }
+                        }
+                    }
                     label {
                         font-size: 14px;
                     }
 
                     input {
-                        padding: 5px 0;
+                        padding: 0;
+                        margin-bottom: 15px;
                     }
 
                     p {
                         font-size: 14px;
+                        margin-top: 15px;
                     }
                 }
 
@@ -226,10 +239,57 @@
                 }
             }
         }
+        #avatars,
+        .show {
+            .modal-dialog {
+                width:70%;
+                margin: 0 auto;
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                .modal-content {
+                    .modal-header {
+                        padding: 10px;
+                        h3 {
+                            font-size: 25px;
+                            margin: 0;
+                        }
+                        button {
+                            border: 0;
+                            text-shadow: none;
+                            i {
+                                color: rgb(0, 217, 255);
+                            }
+                            &:focus {
+                                outline: none;
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                    .modal-body {
+                        border: 0;
+                        .avatars__row {
+                            .avatar__img {
+                                padding: 0 10px;
+                                margin-bottom: 10px;
+                                img {
+                                    border-radius: 50%;
+                                    width: 100%;
+                                    cursor: pointer;
+                                    &:hover {
+                                        border: 2px solid rgb(0, 217, 255);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
-@media screen and (min-width: 576px) and (max-width: 768px) {
+@media screen and (min-width: 426px) and (max-width: 768px) {
     .userLogin,
     .userRegister {
         .userLoginForm,
@@ -246,15 +306,15 @@
 
                 .header__body {
                     label {
-                        font-size: 14px;
+                        font-size: 16px;
                     }
 
                     input {
-                        padding: 5px 0;
+                        padding: 8px 0;
                     }
 
                     p {
-                        font-size: 14px;
+                        font-size: 16px;
                     }
                 }
             }

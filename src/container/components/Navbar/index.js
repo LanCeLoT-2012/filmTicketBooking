@@ -1,22 +1,28 @@
 import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 import defaultAva from "../../../assets/img/avatar.png";
 class Navbar extends Component {
+	constructor(props) {
+		super(props);
+		this.state = { isLoggedIn: false, userInformation: null }
+	}
+
 	handleLogout = (history) => {
-		window.localStorage.removeItem("accessToken");
+		window.localStorage.clear();
 		history.push("/userLogin");
 	};
 
-	handleIsLogin = (isLoggedIn, user) => {
+	handleIsLogin = (isLoggedIn, userInformation) => {
 		const { history } = this.props;
 		if (isLoggedIn) {
 			return (
 				<>
 					<div className='userAvatar'>
-						<img src={user.avatar} />
+						<img src={userInformation.avatar} alt="loginAvatar" />
 					</div>
 					<div className='userName'>
-						<p id='name'>{user.displayName}</p>
+						<p id='name'>{userInformation.displayName}</p>
 					</div>
 					<button
 						className='login_logout'
@@ -33,7 +39,7 @@ class Navbar extends Component {
 			return (
 				<>
 					<div className='userAvatar'>
-						<img src={defaultAva} />
+						<img src={defaultAva} alt="defaultAvatar" />
 					</div>
 					<button
 						className='login_logout'
@@ -49,82 +55,81 @@ class Navbar extends Component {
 		}
 	};
 
+	UNSAFE_componentWillMount = () => {
+		const accessToken = window.localStorage.getItem("accessToken");
+		if (!accessToken) {
+			this.setState({ isLoggedIn: false, userInformation: null });
+		} else {
+			const tokenExpTime = window.localStorage.getItem("expTime");
+			const currentDate = new Date();
+			if (tokenExpTime * 1000 < currentDate.getTime()) {
+				this.props.history.push("/userLogin");
+			} else {
+				const userInformation = JSON.parse(window.localStorage.getItem("userInformation"));
+				this.setState({ isLoggedIn: true, userInformation: userInformation });
+			}
+		}
+	};
+
 	render() {
-		const { isLoggedIn, user } = this.props;
+		const { isLoggedIn, userInformation } = this.state;
 		return (
-			<div>
-				<div className='cine-navbar'>
-					<nav className='navbar navbar-expand-lg'>
-						<div className='container'>
-							<div className='col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 nav__left__col'>
-								<NavLink className='navbar-brand' to='/'>
-									Fan Xi Nê
-								</NavLink>
-							</div>
-							<div className='col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 nav__right__col'>
-								<div
-									className='collapse navbar-collapse'
-									id='navbarNav'
-								>
-									<ul className='navbar-nav'>
-										<button
-											className='navbar-toggler'
-											type='button'
-											data-toggle='collapse'
-											data-target='#navbarNav'
-											aria-controls='navbarNav'
-											aria-expanded='false'
-											aria-label='Toggle navigation'
-										>
-											<span className='navbar-toggler-icon'>
-												<i
-													id='navHambuger'
-													className='fa fa-bars'
-												></i>
-											</span>
-										</button>
-										<li className='nav-item active'>
-											<NavLink
-												activeClassName='selected'
-												className='nav-link'
-												to='/home'
-											>
-												Trang chủ
-											</NavLink>
-										</li>
-										<li className='nav-item'>
-											<NavLink
-												className='nav-link'
-												to=''
-											>
-												Lịch chiếu
-											</NavLink>
-										</li>
-										<li className='nav-item'>
-											<NavLink
-												className='nav-link'
-												to=''
-											>
-												Cụm rạp
-											</NavLink>
-										</li>
-										<li className='nav-item'>
-											<NavLink
-												className='nav-link'
-												to=''
-											>
-												Tin tức
-											</NavLink>
-										</li>
-										<li className='nav-item'>
-											{this.handleIsLogin(
-												isLoggedIn,
-												user
-											)}
-										</li>
-									</ul>
-								</div>
-							</div>
+			<div className='cine-navbar'>
+				<div className='container'>
+					<nav className='navbar navbar-expand-md row'>
+						<NavHashLink className='navbar-brand' smooth to='/#top'>
+							FAN XI NÊ
+						</NavHashLink>
+						<button
+							className='navbar-toggler'
+							type='button'
+							data-toggle='collapse'
+							data-target='#collapsibleNavbar'
+						>
+							<span className='navbar-toggler-icon' />
+							<i className='fa fa-bars'></i>
+						</button>
+						<div
+							className='collapse navbar-collapse'
+							id='collapsibleNavbar'
+						>
+							<ul className='navbar-nav'>
+								<li className='nav-item'>
+									<NavHashLink
+										className='nav-link'
+										smooth
+										to='/#showtimes'
+									>
+										Lịch Chiếu
+									</NavHashLink>
+								</li>
+								<li className='nav-item'>
+									<NavHashLink
+										className='nav-link'
+										activeClassName='active'
+										smooth
+										to='/#cinemas'
+									>
+										Cụm rạp
+									</NavHashLink>
+								</li>
+								<li className='nav-item'>
+									<NavHashLink
+										className='nav-link'
+										activeClassName='active'
+										smooth
+										to='/#news'
+									>
+										Tin tức
+									</NavHashLink>
+								</li>
+								<li className='nav-item'>
+									{this.handleIsLogin(
+										isLoggedIn,
+										userInformation
+									)}
+								</li>
+							</ul>
 						</div>
 					</nav>
 				</div>

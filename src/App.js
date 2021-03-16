@@ -1,32 +1,41 @@
-import { routesHomeTemplate } from "./routes";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { homeAndDetailRoutes } from "./routes/index";
+import { Route, Switch } from "react-router-dom";
 import "../node_modules/react-modal-video/scss/modal-video.scss";
 import "./sass/main.scss";
 import axios from "axios";
+import UserLogin from "./container/userLogin";
+import UserRegister from "./container/userRegister";
+import FanXiNe from "./routes/FanXiNe/index";
+import Checkout from "./container/homeTemplate/Checkout/index"
+import { Component } from "react";
 
 axios.defaults.withCredentials = true;
-
-function App() {
-	const homeTemplateRoute = (routesHomeTemplate) => {
-		if (routesHomeTemplate && routesHomeTemplate.length > 0) {
-			return routesHomeTemplate.map((item, index) => {
+class App extends Component {
+	renderHomeAndDetailTemplate = (homeAndDetailRoutes) => {
+		if (homeAndDetailRoutes && homeAndDetailRoutes.length > 0) {
+			return homeAndDetailRoutes.map((route, index) => {
 				return (
-					<Route
+					<FanXiNe
 						key={index}
-						exact={item.exact}
-						path={item.path}
-						component={item.component}
+						exact={route.exact}
+						path={route.path}
+						component={route.component}
 					/>
 				);
-			});
+			})
 		}
-	};
+	}
 
-	return (
-		<BrowserRouter>
-			<Switch>{homeTemplateRoute(routesHomeTemplate)}</Switch>
-		</BrowserRouter>
-	);
+	render(){
+		return (
+			<Switch>
+				<Route exact={true} path="/userLogin" render={(props) => <UserLogin {...props} />} />
+				<Route exact={true} path="/userRegister" render={(props) => <UserRegister {...props} />} />
+				{this.renderHomeAndDetailTemplate(homeAndDetailRoutes)}
+				<Route exact={true} path="/checkout/:showTimeId" render={(props) => <Checkout {...props} />} />
+			</Switch>
+		);
+	}
 }
 
 export default App;

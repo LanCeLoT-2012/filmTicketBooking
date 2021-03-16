@@ -186,7 +186,7 @@ export default class Showtimes extends Component {
 	render() {
 		const { showTimeCinemas, filmShowtimes } = this.props;
 		return (
-			<section className='showtimes'>
+			<section id='movieShowtimes' className='showtimes'>
 				<div className='tix__container'>
 					{this.renderShowtimesTable(showTimeCinemas, filmShowtimes)}
 				</div>

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import Axios from "../../../../api/index";
 import MoviesTab from "./MoviesTab";
-import "./../../../../sass/Layout/_listMovies.scss";
 
 export default class ListMovies extends Component {
 	constructor(props) {
@@ -80,7 +78,7 @@ export default class ListMovies extends Component {
 
 	render() {
 		return (
-			<div className='comingSoon'>
+			<div id='showtimes' className='comingSoon'>
 				<div className='comingSoon__content tix__container container'>
 					<div className='moviesSection'>
 						<ul className='nav nav-tabs' id='myTab' role='tablist'>

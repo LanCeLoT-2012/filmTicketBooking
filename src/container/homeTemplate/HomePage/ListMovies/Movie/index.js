@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link, NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 import ratingStar from "../../../../../assets/img/star1.png";
 import ModalVideo from "react-modal-video";
 class Movie extends Component {
@@ -37,7 +38,7 @@ class Movie extends Component {
 	render() {
 		const { movie, history } = this.props;
 		return (
-			<div className='movieColumn col-6 col-md-3 col-lg-3'>
+			<div className='movieColumn col-6 col-sm-3 col-md-3 col-lg-3'>
 				<div className='movie__image'>
 					<img src={movie.thumbnail} />
 					<div className='movie__point__label'>
@@ -87,7 +88,7 @@ class Movie extends Component {
 							</button>
 						</div>
 						<div className='getTicket'>
-							<button id='getTicket'>ĐẶT VÉ</button>
+							<NavHashLink id='getTicket' smooth to={`/films/${movie._id}/#movieShowtimes`}>ĐẶT VÉ</NavHashLink>
 						</div>
 					</div>
 				</div>

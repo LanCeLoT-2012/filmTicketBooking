@@ -15,124 +15,95 @@ body {
 	width: 100%;
 	z-index: 100;
 
-	nav {
-		padding: 8px 0;
-		height: 100%;
-
-		.container {
-			.nav__left__col {
-				padding: 0;
-				height: 100%;
-
-				a {
-					font-size: 35px;
-					color: rgb(0, 217, 255);
-					font-weight: 450;
-					cursor: pointer;
-					&:focus {
-						outline: none;
-						box-shadow: none;
-					}
+	.navbar {
+		height: 80px;
+		position: relative;
+		.navbar-brand {
+			position: absolute;
+			left: 0;
+			font-size: 35px;
+			color: rgb(0, 217, 255);
+			font-weight: 450;
+			cursor: pointer;
+			&:focus {
+				outline: none;
+				box-shadow: none;
+			}
+		}
+		.navbar-toggler {
+			position: absolute;
+			right: 0;
+			i {
+				font-size: 35px;
+				color: rgb(0, 217, 255);
+				&:focus {
+					box-shadow: none;
+					outline: none;
 				}
 			}
-
-			.nav__right__col {
-				padding: 0;
-
-				.navbar-collapse {
-					position: relative;
+		}
+		.navbar-collapse {
+			position: absolute;
+			right: 0;
+			.navbar-nav {
+				.nav-item {
 					display: flex;
-					justify-content: flex-end;
-
-					button {
-						padding: 0;
-
-						#navHambuger {
-							font-size: 30px;
-							color: rgb(0, 217, 255);
-						}
+					align-items: center;
+					margin-left: 10px;
+					a {
+						font-size: 18px;
+						color: rgb(0, 217, 255);
+						transition: .3s all;
 						&:focus {
-							outline: none;
 							box-shadow: none;
-							border: 0;
+							outline: none;
 						}
 					}
-
-					ul {
-						list-style-type: none;
-
-						li {
-							margin-left: 15px;
-							padding-left: 20px;
-							display: flex;
-							align-items: center;
-
-							.userAvatar {
-								display: flex;
-								align-items: center;
-								justify-content: center;
-								height: 35px;
-								width: 35px;
-								border-radius: 50%;
-								overflow: hidden;
-								margin-right: 5px;
-								img {
-									height: 100%;
-									width: 100%;
-								}
-							}
-							.userName {
-								height: 100%;
-								display: flex;
-								align-items: center;
-								margin: 0 5px;
-								padding-right: 10px;
-								border-right: 2px solid whitesmoke;
-								#name {
-									color: white;
-									margin: 0;
-								}
-							}
-							.login_logout {
-								display: block;
-								padding: 2px 10px;
-								margin-left: 5px;
-								border: 0;
-								border-radius: 20px;
-								background: $color-gray-1;
-								color: black;
-								transition: .4s all;
-								&:hover {
-									background-color: #ce3017;
-									color: whitesmoke;
-								}
-							}
-
-							a {
-								display: flex;
-								align-items: center;
-								color: white;
-								transition: 0.4s all;
-
-								&:hover {
-									color: rgb(0, 217, 255);
-								}
-								&:focus {
-									outline: none;
-									box-shadow: none;
-								}
-								i {
-									font-size: 30px;
-									margin-right: 10px;
-								}
-							}
+					.active {
+						border-bottom: 2px solid rgb(0, 217, 255);
+					}
+					.userAvatar {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						height: 35px;
+						width: 35px;
+						border-radius: 50%;
+						overflow: hidden;
+						margin-right: 5px;
+						img {
+							height: 100%;
+							width: 100%;
 						}
-
-						.active {
-							a {
-								color: rgb(0, 217, 255);
-								border-bottom: 2px solid rgb(0, 217, 255);
-							}
+					}
+					.userName {
+						height: 100%;
+						display: flex;
+						align-items: center;
+						margin: 0 5px;
+						padding-right: 10px;
+						border-right: 2px solid whitesmoke;
+						#name {
+							color: white;
+							margin: 0;
+						}
+					}
+					.login_logout {
+						display: block;
+						padding: 2px 10px;
+						margin-left: 5px;
+						border: 0;
+						border-radius: 20px;
+						background: $color-gray-1;
+						color: black;
+						transition: 0.4s all;
+						&:hover {
+							background-color: #ce3017;
+							color: whitesmoke;
+						}
+						&:focus {
+							box-shadow: none;
+							outline: none;
 						}
 					}
 				}

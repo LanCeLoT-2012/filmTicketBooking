@@ -104,25 +104,126 @@
     }
 }
 
-@media screen and (max-width: 576px) {
-    .carouselSection {
-        .carousel__content {
-            display: none;
-        }
-    }
-}
-
-@media screen and (min-width: 577px) and (max-width: 786px) {
+@media screen and (max-width: 426px) {
     .carouselSection {
         .carousel__content {
             #carouselExampleIndicators {
                 .carousel-inner {
                     .carousel-item {
+                        position: relative;
                         img {
                             width: 100%;
-                            height: 330px;
+                            height: 300px;
+                        }
+                        .modal-video {
+                            .modal-video-body {
+                                width: 90%;
+                                .modal-video-inner {
+                                    .modal-video-movie-wrap {
+                                        .modal-video-close-btn {
+                                            top: -10px;
+                                            left: -35px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        button {
+                            width: 50px;
+                            height: 50px;
+                        }
+                        &:hover button {
+                            opacity: 1;
                         }
                     }
+                }
+                .left__control {
+                    display: none;
+                    .ion-ios-arrow-left {
+                        display: none;
+                    }
+                }
+                .right__control {
+                    display: none;
+                    .ion-ios-arrow-right {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .modal-video {
+        .modal-video-body {
+            .modal-video-inner {
+                .modal-video-close-btn {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    transform: translate(50%, -50%);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 426px) and (max-width: 786px) {
+    .carouselSection {
+        .carousel__content {
+            #carouselExampleIndicators {
+                .carousel-inner {
+                    .carousel-item {
+                        position: relative;
+                        img {
+                            width: 100%;
+                            height: 400px;
+                        }
+                        .modal-video {
+                            .modal-video-body {
+                                width: 90%;
+                                .modal-video-inner {
+                                    .modal-video-movie-wrap {
+                                        .modal-video-close-btn {
+                                            top: -10px;
+                                            left: -20px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        button {
+                            width: 50px;
+                            height: 50px;
+                        }
+                        &:hover button {
+                            opacity: 1;
+                        }
+                    }
+                }
+                .left__control {
+                    display: none;
+                    .ion-ios-arrow-left {
+                        display: none;
+                    }
+                }
+                .right__control {
+                    display: none;
+                    .ion-ios-arrow-right {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .modal-video {
+        .modal-video-body {
+            .modal-video-inner {
+                .modal-video-close-btn {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    transform: translate(50%, -50%);
                 }
             }
         }

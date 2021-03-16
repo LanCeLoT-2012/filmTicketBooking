@@ -10,14 +10,8 @@ export default class Footer extends Component {
 						<div className='footer__content'>
 							<div className='footer__text'>
 								<p className='footer__label'>Fan Xi Nê</p>
-								<p>
-									Trường đại học Công nghệ thông tin, Khu phố
-									6, Phường Linh Trung, Quận Thủ Đức
-								</p>
-								<p>Internet và công nghệ Web - IE104.L11</p>
-								<p>Sinh viên thực hiện :</p>
-								<p>Liêu Gia Khánh - 18520291</p>
-								<p>Nguyễn Minh Hiếu - 18529999</p>
+								<p>Đồ án tốt nghiệp cuối khóa - FrontEnd 52E</p>
+								<p>Học viên thực hiện : Liêu Gia Khánh</p>
 							</div>
 						</div>
 					</div>

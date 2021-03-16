@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./../../../../sass/Layout/_app.scss";
 
 import mobileLogo from "../../../../assets/img/mobile.png";
 
@@ -23,7 +22,7 @@ export default class HomeApp extends Component {
 				<div className='apps__bg'>
 					<div className='tix__container container'>
 						<div className='row apps__row '>
-							<div className='col-lg-6 d-flex align-items-center'>
+							<div className='col-12 col-lg-6 d-flex align-items-center'>
 								<div className='text-white'>
 									<h2 className='mb-3'>
 										Ứng dụng tiện lợi dành cho
@@ -58,7 +57,7 @@ export default class HomeApp extends Component {
 									</p>
 								</div>
 							</div>
-							<div className='col-lg-6 apps__img text-center'>
+							<div className='col-12 col-lg-6 apps__img text-center'>
 								<img className='img__bg' src={mobileLogo} />
 								<div className='apps__carousel'>
 									<div className='slick__carousel'>

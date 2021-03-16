@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 
-import NavBar from "../../components/Navbar";
 import Loader from "../../components/Loader";
 
 import Showtimes from "./Showtimes/index";
@@ -12,7 +9,8 @@ import Comments from "./Comments/index";
 import ratingStar from "../../../assets/img/star1.png";
 import ModalVideo from "react-modal-video";
 import axios from "axios";
-class MovieDetail extends Component {
+
+export default class MovieDetail extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -69,7 +67,7 @@ class MovieDetail extends Component {
 		})
 	}
 
-	getFilmInfomation = () => {
+	getFilmInfomation = () => {	
 		axios({
 			url: `http://localhost:5000/api/films/getFilm/${this.props.match.params.filmId}`,
 			method: "GET",
@@ -85,13 +83,10 @@ class MovieDetail extends Component {
 
 	renderMovieDetail = () => {
 		const { film } = this.state;
+		const userInformation = JSON.parse(window.localStorage.getItem("userInformation"));
 		if (film) {
 			return (
 				<div>
-					<NavBar
-						isLoggedIn={this.props.isLoggedIn}
-						user={this.props.user}
-					/>
 					<div className='get__Detail'>
 						<div className='background__blur'>
 							<img id='blur__img' src={film.thumbnail} alt="This is a dog" />
@@ -268,7 +263,7 @@ class MovieDetail extends Component {
 												idLoggedIn={
 													this.props.isLoggedIn
 												}
-												user={this.props.user}
+												userInformation={userInformation}
 												filmComments={film.comments}
 											/>
 										</div>
@@ -289,13 +284,3 @@ class MovieDetail extends Component {
 		}
 	}
 }
-
-const mapStateToProps = (state) => {
-	return {
-		isLoggedIn: state.userLogonReducer.isLoggedIn,
-		user: state.userLogonReducer.user,
-	};
-};
-
-const connectedComponent = connect(mapStateToProps, null)(MovieDetail);
-export default withRouter(connectedComponent);

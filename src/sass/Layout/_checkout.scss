@@ -1,3 +1,60 @@
+#checkoutModal {
+	max-width: 400px;
+	.modal-content {
+		padding: 12px;
+		border-radius: 25px;
+		.modal-body {
+			position: relative;
+			display: flex;
+			align-items: center;
+			padding: 0;
+			.notiAction {
+				display: block;
+				width: 100%;
+				position: relative;
+				#modalNoti {
+					margin: 0;
+				}
+				#closeModal {
+					position: absolute;
+					right: 0;
+					top: 50%;
+					transform: translateY(-50%);
+					border-radius: 50%;
+					padding: 5px;
+					height: 30px;
+					width: 30px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+			}
+			#modalLogin {
+				border-radius: 50px;
+				padding: 3px 10px;
+			}
+			#closeModal,
+			#modalLogin {
+				position: absolute;
+				right: 0;
+				display: block;
+				border: 0;
+				background: $color-gray-1;
+				color: black;
+				transition: 0.4s all;
+				&:hover {
+					background-color: #ce3017;
+					color: whitesmoke;
+				}
+				&:focus {
+					box-shadow: none;
+					outline: none;
+				}
+			}
+		}
+	}
+}
+
 .chooseYourSeat {
 	padding-top: 70px;
 	.cineSection {
@@ -36,7 +93,7 @@
 							color: #e5a813;
 						}
 						#GalaxyCinema {
-							color: blue;
+							color: #ff7f00;
 						}
 						#cinemaAdd {
 							color: #9b9b9b;
@@ -105,7 +162,7 @@
 							margin-bottom: 10px;
 							background-color: transparent;
 							border: 0;
-							#normalSeat {
+							.normalSeat {
 								cursor: pointer;
 								color: white;
 								height: 25px;
@@ -119,7 +176,7 @@
 								border-radius: 5px;
 								background-color: whitesmoke;
 							}
-							#choosingSeat {
+							.choosingSeat {
 								cursor: pointer;
 								color: rgb(173, 163, 163);
 								height: 25px;
@@ -133,7 +190,7 @@
 								border-radius: 5px;
 								background-color: rgb(173, 163, 163);
 							}
-							#vipSeat {
+							.vipSeat {
 								cursor: pointer;
 								color: white;
 								height: 25px;
@@ -147,7 +204,7 @@
 								border-radius: 5px;
 								background-color: #fdd835;
 							}
-							#choosenType {
+							.choosenType {
 								margin: 0 auto;
 								height: 25px;
 								cursor: not-allowed;
@@ -155,11 +212,12 @@
 								background-color: rgba(128, 128, 128, 0.5);
 								padding: 2px;
 								background-clip: content-box;
-								border-bottom: 2px solid rgba(128, 128, 128, 0.5);
+								border-bottom: 2px solid
+									rgba(128, 128, 128, 0.5);
 								border-left: 2px solid rgba(128, 128, 128, 0.5);
 								border-right: 2px solid rgba(128, 128, 128, 0.5);
 								border-top: 2px solid #1d1d1d;
-								border-radius: 5px; 
+								border-radius: 5px;
 								span {
 									display: flex;
 									align-items: center;
@@ -182,7 +240,7 @@
 						padding: 0 12px;
 						background-color: transparent;
 						border: 0;
-						#sweetBox {
+						.sweetBox {
 							cursor: pointer;
 							margin: 0;
 							height: 25px;
@@ -196,7 +254,7 @@
 							border-radius: 5px;
 							background-color: #e57373;
 						}
-						#choosingSeat {
+						.choosingSeat {
 							cursor: pointer;
 							margin: 0 auto;
 							height: 25px;
@@ -209,6 +267,30 @@
 							border-right: 2px solid rgb(173, 163, 163);
 							border-top: 2px solid #1d1d1d;
 							border-radius: 5px;
+						}
+						.choosenType {
+							margin: 0 auto;
+							height: 25px;
+							cursor: not-allowed;
+							width: 100%;
+							background-color: rgba(128, 128, 128, 0.5);
+							padding: 2px;
+							background-clip: content-box;
+							border-bottom: 2px solid rgba(128, 128, 128, 0.5);
+							border-left: 2px solid rgba(128, 128, 128, 0.5);
+							border-right: 2px solid rgba(128, 128, 128, 0.5);
+							border-top: 2px solid #1d1d1d;
+							border-radius: 5px;
+							span {
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								color: rgba(245, 245, 245, 0.5);
+								width: 100%;
+								height: 100%;
+								margin: 0;
+								padding: 0;
+							}
 						}
 					}
 				}
@@ -288,7 +370,6 @@
 						.choosen__Seat {
 							.choosenSeat {
 								position: relative;
-								
 							}
 							#choosenType {
 								margin: 0 auto;
@@ -297,11 +378,12 @@
 								background-color: rgba(128, 128, 128, 0.5);
 								padding: 2px;
 								background-clip: content-box;
-								border-bottom: 2px solid rgba(128, 128, 128, 0.5);
+								border-bottom: 2px solid
+									rgba(128, 128, 128, 0.5);
 								border-left: 2px solid rgba(128, 128, 128, 0.5);
 								border-right: 2px solid rgba(128, 128, 128, 0.5);
 								border-top: 2px solid #1d1d1d;
-								border-radius: 5px; 
+								border-radius: 5px;
 								span {
 									display: flex;
 									align-items: center;
@@ -319,7 +401,7 @@
 			}
 		}
 	}
-	.yourTicket {
+	.checkoutInfomation {
 		position: relative;
 		background-color: whitesmoke;
 		border-radius: 10px;

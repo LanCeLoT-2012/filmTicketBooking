@@ -1,56 +1,3 @@
-// variable color
-$color-black-0: #29303b; // default
-$color-white-0: #fff; //default
-$color-white-header: rgba(255, 255, 255, 0.95);
-$color-red-0: #fb4226;
-$color-red-1: #fa5238;
-$color-purple: #6e1a52;
-$color-gray-0: #9b9b9b;
-$color-gray-1: #d8d8d8;
-$color-gray-2: #a1a7b3;
-$color-gray-3: rgba(20, 23, 28, 0.05);
-$color-gray-4: #686f7a;
-$color-gray-5: #f7f8fa;
-$color-gray-6: #dedfe0;
-$color-orange-0: #fb4226;
-$color-green-0: #00ac4d;
-$color-black-light: #505763;
-$color-white-cream: #f2f3f5;
-$color-black-dark: rgba(20, 23, 28, 0.1);
-$color-yellow: #f4c150;
-$color-blue: #007791;
-// variable font-size
-$fs-0: 15px; //default
-$fs-1: 13px;
-$fs-2: 20px;
-$fs-3: 24px;
-//Còn 1 font-size: 36px;
-$fs-4: 40px;
-//variable margin
-$mg-0: 2px;
-$mg-1: 10px;
-$mg-2: 25px;
-//variable border-radius
-$border-radius: 2px;
-//variable padding
-$pd-0: 5px; //default
-$pd-1: 10px;
-$pd-2: 20px;
-//variable line-height
-$line-height-0: 1.43; //default
-//variable font-weight
-$fw-normal: normal;
-$fw-bold-0: 600;
-$fw-bold-1: 700;
-$fw-bold: bold;
-//break points
-$breakpoints: (
-    "extra-large": 1200px,
-    "large": 992px,
-    "medium": 768px,
-    "small": 576px,
-);
-
 .comingSoon {
     .comingSoon__content {
         .div {
@@ -93,7 +40,7 @@ $breakpoints: (
             }
             #myTabContent {
                 display: flex;
-                height: 1000px;
+                height: auto;
                 width: 100%;
                 justify-content: center;
                 .movies__tab {
@@ -119,7 +66,6 @@ $breakpoints: (
                             .ion-ios-arrow-left {
                                 font-size: 80px;
                                 opacity: 0.5;
-                                margin-left: 50px;
                                 color: white;
                             }
                         }
@@ -134,7 +80,6 @@ $breakpoints: (
                             .ion-ios-arrow-right {
                                 font-size: 80px;
                                 opacity: 0.5;
-                                margin-right: 50px;
                                 color: white;
                             }
                         }
@@ -289,7 +234,24 @@ $breakpoints: (
                                         border-radius: 4px;
                                         background-color: #fb4226;
                                         color: white;
-                                        font-size: 18px !important;
+                                        font-size: 18px;
+                                        text-align: center;
+                                        width: 100%;
+                                        padding: 8px 0;
+                                        text-decoration: none;
+                                        &:hover {
+                                            background: linear-gradient(to left, #fb4226, #ce3017 100%);
+                                            color: white;
+                                        }
+                                    }
+                                    a {
+                                        display: block;
+                                        opacity: 0;
+                                        border: none;
+                                        border-radius: 4px;
+                                        background-color: #fb4226;
+                                        color: white;
+                                        font-size: 18px;
                                         text-align: center;
                                         width: 100%;
                                         padding: 8px 0;
@@ -319,11 +281,16 @@ $breakpoints: (
                                 }
                             }
                             .movie__content {
-                                #filmName, #filmDuration {
+                                #filmName,
+                                #filmDuration {
                                     opacity: 0;
                                 }
                                 .movieActions {
                                     button {
+                                        opacity: 1;
+                                        outline: none;
+                                    }
+                                    a {
                                         opacity: 1;
                                         outline: none;
                                     }
@@ -337,102 +304,107 @@ $breakpoints: (
     }
 }
 
-@media screen and (max-width: 576px) {
-    .comingSoon {
-        padding: 0;
-        .comingSoon__content {
-            .bookTicket {
-                display: none;
-            }
-            .moviesSection {
-                .nav-tabs {
-                    margin-top: 100px;
-                    .nav-item {
-                        padding: 0;
-                    }
-                }
-                #home-tab {
-                    font-size: 16px;
-                    &:focus {
-                        font-size: 18px;
-                    }
-                }
-                #myTabContent {
-                    #playingMoviesCarousel,
-                    #comingMoviesCarousel {
-                        .left__control {
-                            display: none;
-                            .ion-ios-arrow-left {
-                                display: none;
-                            }
-                        }
-                        .right__control {
-                            display: none;
-                            .ion-ios-arrow-right {
-                                display: none;
-                            }
-                        }
-                    }
-                    .moviesList {
-                        .movieColumn {
-                            .movie__image {
-                                img:nth-child(1) {
-                                    height: 285px;
-                                }
-                            }
-                            .movie__content {
-                                display: none;
-                                .getTicket {
-                                    display: none;
-                                }
-                            }
-                            &:hover {
-                                .movie__image {
-                                    .black__overlay {
-                                        opacity: 1;
-                                    }
-                                }
-                                .movie__content {
-                                    p {
-                                        opacity: 0;
-                                    }
-                                    .getTicket {
-                                        button {
-                                            opacity: 1;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media screen and (min-width: 577px) and (max-width: 768px) {
+@media screen and (max-width: 426px) {
     .comingSoon {
         .comingSoon__content {
-            padding: 0;
             .moviesSection {
                 .nav-tabs {
+                    margin-top: 10px;
                     .nav-item {
+                        padding: 10px;
+                        margin-bottom: 10px;
                         .active {
-                            font-size: 24px;
+                            font-size: 20px;
+                            margin-bottom: 10px;
                         }
                         a {
-                            font-size: 20px;
+                            padding: 8px 13px;
+                            font-size: 16px;
                         }
                     }
                 }
                 #myTabContent {
+                    height: auto;
+                    #playingMovie,
+                    #comingMovie {
+                        width: 100%;
+                        #playingMoviesCarousel,
+                        #comingMoviesCarousel {
+                            width: 100%;
+                            position: relative;
+                            .left__control {
+                                display: none;
+                                .ion-ios-arrow-left {
+                                    display: none;
+                                }
+                            }
+                            .right__control {
+                                display: none;
+                                .ion-ios-arrow-right {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
                     .moviesList {
                         .movieColumn {
-                            margin: 0;
+                            padding-top: 0;
                             .movie__image {
                                 img:nth-child(1) {
-                                    height: 245px;
+                                    height: 270px;
+                                }
+                                .movie__point__label {
+                                    .movie__star {
+                                        width: 30px;
+                                        img {
+                                            margin: 0 1px;
+                                        }
+                                    }
+                                }
+                                .black__overlay {
+                                    .modal-video {
+                                        .modal-video-body {
+                                            width: 90%;
+                                            .modal-video-inner {
+                                                .modal-video-movie-wrap {
+                                                    border-radius: 15px;
+                                                    .modal-video-close-btn {
+                                                        top: -10px;
+                                                        left: -35px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .movie__content {
+                                position: relative;
+                                height: 100px;
+                                #filmName {
+                                    font-size: 14px;
+                                    #redLabel {
+                                        font-size: 14px;
+                                    }
+                                    #greenLabel {
+                                        font-size: 14px;
+                                    }
+                                }
+                                #filmDuration {
+                                    font-size: 14px;
+                                    margin: 0;
+                                }
+                                .movieActions {
+                                    .getDetail,
+                                    .getTicket {
+                                        width: 50%;
+                                        button {
+                                            font-size: 14px;
+                                        }
+                                        a {
+                                            font-size: 14px;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -443,61 +415,150 @@ $breakpoints: (
     }
 }
 
-@media screen and (min-width: 769px) and (max-width: 991px) {
+@media screen and (min-width: 426px) and (max-width: 768px) {
     .comingSoon {
-        padding: 0 100px;
         .comingSoon__content {
             .moviesSection {
                 .nav-tabs {
+                    margin-top: 15px;
                     .nav-item {
-                        padding: 0;
-                    }
-                }
-                #home-tab {
-                    font-size: 16px;
-                    &:focus {
-                        font-size: 18px;
+                        margin-bottom: 25px;
+                        .active {
+                            font-size: 20px;
+                            margin-bottom: 10px;
+                        }
+                        a {
+                            padding: 8px 13px;
+                            font-size: 18px;
+                        }
                     }
                 }
                 #myTabContent {
-                    #playingMoviesCarousel,
-                    #comingMoviesCarousel {
-                        .left__control {
-                            display: none;
-                            .ion-ios-arrow-left {
-                                display: none;
+                    height: auto;
+                    #playingMovie,
+                    #comingMovie {
+                        #playingMoviesCarousel,
+                        #comingMoviesCarousel {
+                            .left__control {
+                                display: flex;
+                                .ion-ios-arrow-left {
+                                    display: block;
+                                }
                             }
-                        }
-                        .right__control {
-                            display: none;
-                            .ion-ios-arrow-right {
+                            .right__control {
                                 display: none;
+                                .ion-ios-arrow-right {
+                                    display: none;
+                                }
                             }
                         }
                     }
                     .moviesList {
                         .movieColumn {
-                            .movie__content {
-                                display: none;
-                                .getTicket {
-                                    display: none;
+                            padding-top: 0;
+                            .movie__image {
+                                img:nth-child(1) {
+                                    height: 250px;
                                 }
-                            }
-                            &:hover {
-                                .movie__image {
-                                    .black__overlay {
-                                        opacity: 1;
-                                    }
-                                }
-                                .movie__content {
-                                    p {
-                                        opacity: 0;
-                                    }
-                                    .getTicket {
-                                        button {
-                                            opacity: 1;
+                                .movie__point__label {
+                                    .movie__star {
+                                        width: 30px;
+                                        img {
+                                            margin: 0 1px;
                                         }
                                     }
+                                }
+                                .black__overlay {
+                                    .modal-video {
+                                        .modal-video-body {
+                                            width: 90%;
+                                            .modal-video-inner {
+                                                .modal-video-movie-wrap {
+                                                    border-radius: 15px;
+                                                    .modal-video-close-btn {
+                                                        top: -10px;
+                                                        left: -35px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .movie__content {
+                                position: relative;
+                                height: 100px;
+                                #filmName {
+                                    font-size: 16px;
+                                    #redLabel {
+                                        font-size: 16px;
+                                    }
+                                    #greenLabel {
+                                        font-size: 16px;
+                                    }
+                                }
+                                #filmDuration {
+                                    font-size: 16px;
+                                    margin: 0;
+                                }
+                                .movieActions {
+                                    .getDetail,
+                                    .getTicket {
+                                        width: 50%;
+                                        button {
+                                            font-size: 14px;
+                                        }
+                                        a {
+                                            font-size: 14px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1025px) {
+    .comingSoon {
+        .comingSoon__content {
+            .moviesSection {
+                #myTabContent {
+                    #playingMovie,
+                    #comingMovie {
+                        #playingMoviesCarousel,
+                        #comingMoviesCarousel {
+                            width: 100%;
+                            position: relative;
+                            .left__control {
+                                height: 100%;
+                                position: absolute;
+                                left: -140px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-end;
+                                background: none;
+                                .ion-ios-arrow-left {
+                                    font-size: 80px;
+                                    opacity: 0.5;
+                                    color: white;
+                                }
+                            }
+                            .right__control {
+                                height: 100%;
+                                position: absolute;
+                                right: -140px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-start;
+                                background: none;
+                                .ion-ios-arrow-right {
+                                    font-size: 80px;
+                                    opacity: 0.5;
+                                    color: white;
                                 }
                             }
                         }

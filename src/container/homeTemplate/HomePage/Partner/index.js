@@ -38,7 +38,7 @@ export default class Partner extends Component {
 				<div className='container'>
 					<div className='tix__container py-4'>
 						<div className='row'>
-							<div className=' d-none d-lg-block  col-lg-2'>
+							<div className=' d-none d-lg-block col-lg-2'>
 								<h3>Về chúng tôi</h3>
 								<a href='#'>FAQ</a>
 								<a href='#'>Brand Guidelines</a>

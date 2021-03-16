@@ -1,12 +1,18 @@
-import React, { Component, Alert } from "react";
+import React, { Component } from "react";
 import ratingStar from "../../../../assets/img/star1.png";
 import UserComment from "./userComment";
-import { connect } from "react-redux";
+import defaultAvatar from "../../../../assets/img/avatar.png";
 import axios from "axios";
-class Comments extends Component {
+export default class Comments extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			userInformation: {
+				_id: null,
+				email: "",
+				displayName: "",
+				avatar: defaultAvatar,
+			} ,
 			filmComments: [],
 			userComment: {
 				content: "",
@@ -24,8 +30,8 @@ class Comments extends Component {
 	};
 
 	loginToComment = () => {
-		const { isLoggedIn } = this.props;
-		if (!isLoggedIn) {
+		const accessToken = window.localStorage.getItem("accessToken");
+		if (!accessToken) {
 			document.getElementById("login_Required").style.display = "block";
 			document.getElementById("commentInput").disabled = true;
 		}
@@ -37,7 +43,7 @@ class Comments extends Component {
 			url: "http://localhost:5000/api/users/comment",
 			method: "POST",
 			data: {
-				userId: this.props.user._id,
+				userId: this.state.userInformation._id,
 				content: this.state.userComment.content,
 				filmId: this.props.filmId,
 			},
@@ -72,13 +78,17 @@ class Comments extends Component {
 	};
 
 	UNSAFE_componentWillMount = () => {
-		this.setState({
-			filmComments: this.props.filmComments,
-		});
+		const accessToken = window.localStorage.getItem("accessToken");
+		if (accessToken) {
+			const userInformation = JSON.parse(window.localStorage.getItem("userInformation")); 
+			this.setState({
+				userInformation,
+				filmComments: this.props.filmComments,
+			});	
+		}
 	}
 
 	render() {
-		const { user } = this.props;
 		return (
 			<div>
 				<div className='comments'>
@@ -86,7 +96,7 @@ class Comments extends Component {
 						<div className='write__comment row'>
 							<div className='avatar col-9'>
 								<div className='user__avatar'>
-									<img src={user.avatar} />
+									<img src={this.state.userInformation.avatar} />
 								</div>
 								<input
 									id='commentInput'
@@ -118,10 +128,4 @@ class Comments extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		isLoggedIn: state.userLogonReducer.isLoggedIn,
-	};
-};
 
-export default connect(mapStateToProps, null)(Comments);
