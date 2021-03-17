@@ -40,17 +40,17 @@ class Movie extends Component {
 		return (
 			<div className='movieColumn col-6 col-sm-3 col-md-3 col-lg-3'>
 				<div className='movie__image'>
-					<img src={movie.thumbnail} />
+					<img src={movie.thumbnail} alt={`${movie.filmName}`} />
 					<div className='movie__point__label'>
 						<div className='movie__point text-center'>
 							<span>{movie.rating}</span>
 						</div>
 						<div className='movie__star text-center'>
-							<img src={ratingStar} />
-							<img src={ratingStar} />
-							<img src={ratingStar} />
-							<img src={ratingStar} />
-							<img src={ratingStar} />
+							<img src={ratingStar} alt="ratingStar" />
+							<img src={ratingStar} alt="ratingStar" />
+							<img src={ratingStar} alt="ratingStar" />
+							<img src={ratingStar} alt="ratingStar" />
+							<img src={ratingStar} alt="ratingStar" />
 						</div>
 					</div>
 					<div className='black__overlay'>

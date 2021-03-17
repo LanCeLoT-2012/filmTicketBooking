@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import MoviesTab from "./MoviesTab";
 
 export default class ListMovies extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	renderListMovies = (listMovies) => {
 		return this.renderMoviesTabs(listMovies);
 	};

@@ -2,12 +2,7 @@ import React, { Component } from "react";
 import CarouselItem from "./CarouselItem";
 import CarouselIndicators from "./CarouselIndicators";
 import "./../../../../sass/Layout/_carousel.scss";
-import Axios from "../../../../api/index";
 export default class Carousel extends Component {
-	constructor(props) {
-		super(props);
-	}
-
 	renderCarouselIndicators = (listMovies) => {
 		if (listMovies && listMovies.length > 0) {
 			return listMovies.map((movie, index) => {

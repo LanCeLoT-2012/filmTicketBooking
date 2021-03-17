@@ -65,7 +65,7 @@ export default class HomePage extends Component {
 						showingFilms={this.state.showingFilms}
 						commingFilms={this.state.commingFilms}
 					/>
-					{/* <News /> */}
+					<News />
 					<HomeApp />
 					<Partner />
 					<Footer />

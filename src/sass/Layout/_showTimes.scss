@@ -22,8 +22,7 @@
                         .nav-item {
                             margin-bottom: 15px;
                             a {
-                                
-                                border-bottom: 1px solid rgba(245, 245, 245, 0.25);
+                                border-bottom: 1px solid rgba(245, 245, 245, 0.521);
                                 img {
                                     width: 100%;
                                 }
@@ -65,7 +64,7 @@
                                         color: #e5a813;
                                     }
                                     #GalaxyCinema {
-                                        color: #FF7F00;
+                                        color: #ff7f00;
                                     }
                                     #cinemaAdd {
                                         color: #9b9b9b;
@@ -89,7 +88,7 @@
                                             border-radius: 7px;
                                             border: 0;
                                             color: whitesmoke;
-                                            transition: .3s all;
+                                            transition: 0.3s all;
                                             background-color: #fb4226;
                                             &:hover {
                                                 background-color: #b42a14;
@@ -110,3 +109,126 @@
         }
     }
 }
+
+@media screen and (max-width: 426px) {
+    .showtimes {
+        padding: 0;
+        .tix__container {
+            .showTime_Table {
+                .showTime_Col {
+                    height: 500px;
+                    .showTime_Left_Col {
+                        #showTimeTabs {
+                            .nav-item {
+                                a {
+                                    padding: 8px;
+                                }
+                            }
+                        }
+                    }
+                    .showTime_Right_Col {
+                        padding: 8px;
+                        #showTimesTabContent {
+                            .tab-pane {
+                                .showTime {
+                                    padding-bottom: 12px;
+                                    .cinema_info {
+                                        .cinemaName {
+                                            font-size: 14px;
+                                        }
+                                        #cinemaAdd {
+                                            color: #9b9b9b;
+                                            font-size: 14px;
+                                        }
+                                        #cinemaLocation {
+                                            font-size: 14px;
+                                        }
+                                        p {
+                                            font-size: 14px;
+                                        }
+                                    }
+                                    .showTimes {
+                                        .left_Col {
+                                            font-size: 14px;
+                                        }
+                                        .right_Col {
+                                            button {
+                                                padding: 3px 12px;
+                                                font-size: 14px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 426px) and (max-width: 769px) {
+    .showtimes {
+        padding: 0 80px;
+        .tix__container {
+            .showTime_Table {
+                .showTime_Col {
+                    height: 500px;
+                    .showTime_Left_Col {
+                        #showTimeTabs {
+                            .nav-item {
+                                margin-bottom: 15px;
+                                a {
+                                    padding: 6px;
+                                    img {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .showTime_Right_Col {
+                        padding: 15px;
+                        height: 100%;
+                        overflow-y: scroll;
+                        #showTimesTabContent {
+                            .tab-pane {
+                                .showTime {
+                                    padding-bottom: 15px;
+                                    border-bottom: 1px solid rgba(245, 245, 245, 0.25);
+                                    .cinema_info {
+                                        p {
+                                            font-size: 16px;
+                                        }
+                                        .cinemaName {
+                                            font-size: 16px;
+                                        }
+                                        #cinemaAdd {
+                                            color: #9b9b9b;
+                                            font-size: 13px;
+                                        }
+                                        #cinemaLocation {
+                                            font-size: 16px;
+                                        }
+                                    }
+                                    .showTimes {
+                                        .left_Col {
+                                            font-size: 16px;
+                                        }
+                                        .right_Col {
+                                            button {
+                                                padding: 4px 12px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

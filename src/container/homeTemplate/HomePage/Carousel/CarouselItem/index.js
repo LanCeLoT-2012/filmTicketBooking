@@ -26,7 +26,7 @@ export default class CarouselItem extends Component {
 			<div
 				className={"carousel-item " + (itemOrder === 0 ? "active" : "")}
 			>
-				<img src={this.props.movie.banner} />
+				<img src={this.props.movie.banner} alt={`${this.props.movie._id}`} />
 				<ModalVideo
 					channel='youtube'
 					isOpen={this.state.isOpen}

@@ -21,7 +21,7 @@ export default class Checkout extends Component {
 			modalStatus: false,
 		};
 	}
-	
+
 	renderShowDate = (showDate) => {
 		let currentDate = new Date();
 		currentDate = currentDate.toLocaleDateString();
@@ -181,8 +181,8 @@ export default class Checkout extends Component {
 					if (seatIndex === 0) {
 						return (
 							<>
-								<button	className='sweetCol col-2'>
-									<div className="choosenType">
+								<button className='sweetCol col-2'>
+									<div className='choosenType'>
 										<span>X</span>
 									</div>
 								</button>
@@ -283,53 +283,81 @@ export default class Checkout extends Component {
 		});
 	};
 
+	renderBookingSeats = (bookingSeats) => {
+		return bookingSeats.map((bookingSeat, index) => {
+			if (index === 0) {
+				return `${bookingSeat}`;
+			} else {
+				return `, ${bookingSeat}`;
+			}
+		});
+	};
+
 	handleGetModalStatus = (type, modalStatus, modalError, httpStatus) => {
 		this.setState({ type, modalStatus, modalError, httpStatus });
-		
-	}
+	};
 
 	handleCloseModal = () => {
 		this.setState({ modalStatus: false });
-	}
+	};
 
 	handleModalAction = (httpStatus) => {
+		const { detailShowtime } = this.state;
 		// User have not logged in
 		if (httpStatus === 401) {
 			return (
-				<div className="notiAction">
+				<div className='notiAction'>
 					<p id='modalNoti'>{this.state.modalError}</p>
-					<button id="modalLogin" onClick={() => { this.props.history.push("/userLogin") }}>
+					<button
+						id='modalLogin'
+						onClick={() => {
+							this.props.history.push("/userLogin");
+						}}
+					>
 						Đăng nhập
 					</button>
 				</div>
-			)
+			);
 		} else if (this.state.type === "bookingSuccess") {
 			return (
 				<>
-					<div>
+					<div className='notiAction'>
 						<p id='modalNoti'>{this.state.modalError}</p>
-						<button id='closeModal' onClick={this.handleCloseModal}>
+						<button id='modalLogin' onClick={() => this.props.history.push("/")}>
 							X
 						</button>
 					</div>
 					<div className='bookingTicket'>
-						<p>Thông tin vé của bạn:</p>
+						<p id='ticketInfo'>Thông tin vé của bạn:</p>
+						<p>Tên phim: {detailShowtime.filmId.filmName}</p>
 						<p>
-							Tên phim:{" "}
-							{this.state.detailShowtime.filmId.filmName}
+							Thông tin rạp: {detailShowtime.cinemaId.cinemaName}{" "}
+							- {detailShowtime.theaterId.theaterName}
+						</p>
+						<p>
+							Suất Chiếu: {detailShowtime.showTimes} - Ngày:{" "}
+							{this.renderShowDate(detailShowtime.showDate)}
+						</p>
+						<p>
+							Vị trí:{" "}
+							{this.renderBookingSeats(
+								this.state.bookingSeatsPosition
+							)}
 						</p>
 					</div>
 				</>
 			);
 		} else {
 			return (
-				<div className="notiAction">
+				<div className='notiAction'>
 					<p id='modalNoti'>{this.state.modalError}</p>
-					<button id="closeModal" onClick={this.handleCloseModal}>X</button>
+					<button id='closeModal' onClick={this.handleCloseModal}>
+						X
+					</button>
 				</div>
-			)
+			);
 		}
-	}
+	};
 
 	componentDidMount = () => {
 		const { showTimeId } = this.props.match.params;

@@ -94,7 +94,7 @@ export default class Comments extends Component {
 				<div className='comments'>
 					<form id='commentBox' onSubmit={this.handleAddComment}>
 						<div className='write__comment row'>
-							<div className='avatar col-9'>
+							<div className='avatar col-12'>
 								<div className='user__avatar'>
 									<img src={this.state.userInformation.avatar} />
 								</div>
@@ -106,13 +106,6 @@ export default class Comments extends Component {
 									onFocus={this.loginToComment}
 									placeholder='Bạn nghĩ gì về phim này ... ?'
 								/>
-							</div>
-							<div className='rate__stars col-3'>
-								<img src={ratingStar} />
-								<img src={ratingStar} />
-								<img src={ratingStar} />
-								<img src={ratingStar} />
-								<img src={ratingStar} />
 							</div>
 						</div>
 					</form>

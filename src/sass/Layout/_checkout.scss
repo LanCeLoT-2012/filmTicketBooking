@@ -1,12 +1,9 @@
 #checkoutModal {
-	max-width: 400px;
+	max-width: 500px;
 	.modal-content {
 		padding: 12px;
 		border-radius: 25px;
 		.modal-body {
-			position: relative;
-			display: flex;
-			align-items: center;
 			padding: 0;
 			.notiAction {
 				display: block;
@@ -16,10 +13,6 @@
 					margin: 0;
 				}
 				#closeModal {
-					position: absolute;
-					right: 0;
-					top: 50%;
-					transform: translateY(-50%);
 					border-radius: 50%;
 					padding: 5px;
 					height: 30px;
@@ -28,27 +21,36 @@
 					align-items: center;
 					justify-content: center;
 				}
-			}
-			#modalLogin {
-				border-radius: 50px;
-				padding: 3px 10px;
-			}
-			#closeModal,
-			#modalLogin {
-				position: absolute;
-				right: 0;
-				display: block;
-				border: 0;
-				background: $color-gray-1;
-				color: black;
-				transition: 0.4s all;
-				&:hover {
-					background-color: #ce3017;
-					color: whitesmoke;
+				#modalLogin {
+					border-radius: 50px;
+					padding: 3px 10px;
 				}
-				&:focus {
-					box-shadow: none;
-					outline: none;
+				#closeModal,
+				#modalLogin {
+					position: absolute;
+					right: 0;
+					top: 50%;
+					transform: translateY(-50%);
+					border: 0;
+					background: $color-gray-1;
+					color: black;
+					transition: 0.4s all;
+					&:hover {
+						background-color: #ce3017;
+						color: whitesmoke;
+					}
+					&:focus {
+						box-shadow: none;
+						outline: none;
+					}
+				}
+			}
+			.bookingTicket {
+				p {
+					margin: 0;
+				}
+				#ticketInfo {
+					margin: 10px 0 5px 0;
 				}
 			}
 		}
@@ -212,8 +214,7 @@
 								background-color: rgba(128, 128, 128, 0.5);
 								padding: 2px;
 								background-clip: content-box;
-								border-bottom: 2px solid
-									rgba(128, 128, 128, 0.5);
+								border-bottom: 2px solid rgba(128, 128, 128, 0.5);
 								border-left: 2px solid rgba(128, 128, 128, 0.5);
 								border-right: 2px solid rgba(128, 128, 128, 0.5);
 								border-top: 2px solid #1d1d1d;
@@ -378,8 +379,7 @@
 								background-color: rgba(128, 128, 128, 0.5);
 								padding: 2px;
 								background-clip: content-box;
-								border-bottom: 2px solid
-									rgba(128, 128, 128, 0.5);
+								border-bottom: 2px solid rgba(128, 128, 128, 0.5);
 								border-left: 2px solid rgba(128, 128, 128, 0.5);
 								border-right: 2px solid rgba(128, 128, 128, 0.5);
 								border-top: 2px solid #1d1d1d;

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./../../../../sass/Layout/_partner.scss";
 
 import cgvLogo from "../../../../assets/img/cgv.png";
 import bhdLogo from "../../../../assets/img/bhd.png";
@@ -38,22 +37,22 @@ export default class Partner extends Component {
 				<div className='container'>
 					<div className='tix__container py-4'>
 						<div className='row'>
-							<div className=' d-none d-lg-block col-lg-2'>
+							<div className='d-none d-lg-block col-lg-2'>
 								<h3>Về chúng tôi</h3>
-								<a href='#'>FAQ</a>
-								<a href='#'>Brand Guidelines</a>
+								<button>FAQ</button>
+								<button>Brand Guidelines</button>
 							</div>
 							<div className='partners__item2 d-lg-block col- col-md-4 col-lg-2 d-flex align-items-center'>
 								<div>
 									<h3 className='index__none d-none d-lg-block'>
 										Fan Xi Nê
 									</h3>
-									<a className='d-inline d-lg-block' href="#">
+									<button className='d-inline d-lg-block' href="#">
 										Thỏa thuận sử dụng
-									</a>
-									<a className='d-inline d-lg-block' href="#">
+									</button>
+									<button className='d-inline d-lg-block' href="#">
 										Chính sách bảo mật
-									</a>
+									</button>
 								</div>
 							</div>
 							<div className='partners__item3 d-none d-lg-block  col-lg-4 partners__img'>
@@ -62,65 +61,71 @@ export default class Partner extends Component {
 									<img
 										className='img__border'
 										src={cgvLogo}
-										alt="true"
+										alt="CGVLogo"
 									/>
-									<img src={bhdLogo} />
-									<img src={galaxyLogo} />
-									<img src={cineLogo} />
-									<img src={lotteLogo} />
+									<img src={bhdLogo} alt="BHDLogo" />
+									<img src={galaxyLogo} alt="GalaxyLogo" />
+									<img src={cineLogo} alt="CinestarLogo" />
+									<img src={lotteLogo} alt="LotteLogo" />
 								</div>
 								<div className='d-flex mb-3'>
-									<img src={megaLogo} />
+									<img src={megaLogo} alt="MegaGSLogo" />
 									<img
 										className='img__border'
 										src={btLogo}
+										alt="BtLogo"
 									/>
 									<img
 										className='img__border'
 										src={dongCaLogo}
+										alt="DongCaLogo"
 									/>
-									<img src={touchLogo} />
+									<img src={touchLogo} alt="TouchLogo" />
 									<img
 										className='img__border'
 										src={cnxLogo}
+										alt="CNXLogo"
 									/>
 								</div>
 								<div className='d-flex mb-3'>
-									<img src={starLightLogo} />
+									<img src={starLightLogo} alt="StarlightLogo" />
 									<img
 										className='img__border'
 										src={dcineLogo}
+										alt="DCineLogo"
 									/>
-									<img src={zaloPayLogo} />
+									<img src={zaloPayLogo} alt="ZaloLogo" />
 									<img
 										className='img__border'
 										src={payooLogo}
+										alt="PayooLogo"
 									/>
-									<img src={vcbLogo} />
+									<img src={vcbLogo} alt="VCBLogo" />
 								</div>
 								<div className='d-flex'>
-									<img src={agribankLogo} />
-									<img src={viettinbankLogo} />
-									<img src={ivbLogo} />
+									<img src={agribankLogo} alt="AgribankLogo" />
+									<img src={viettinbankLogo} alt="ViettinbankLogo" />
+									<img src={ivbLogo} alt="IVBLogo" />
 									<img
 										className='img__border img__123go'
 										src={goLogo}
+										alt="GoLogo"
 									/>
-									<img src={labanLogo} />
+									<img src={labanLogo} alt="LabanLogo" />
 								</div>
 							</div>
 							<div className='partners__item4 d-none d-lg-block  col-lg-2 partners__app text-center'>
 								<h3>MOBILE APP</h3>
 								<div className='d-flex'>
-									<img src={androidLogo} />
-									<img src={appleLogo} />
+									<img src={androidLogo} alt="AndroidLogo" />
+									<img src={appleLogo} alt="AppleLogo" />
 								</div>
 							</div>
 							<div className='partners__item4 d-lg-block col- col-md-4 col-lg-2 partners__app text-center'>
 								<h3 className='d-none d-lg-block'>SOCIAL</h3>
 								<div className='d-flex'>
-									<img src={facebookLogo} />
-									<img src={zaloLogo} />
+									<img src={facebookLogo} alt="FacebookLogo" />
+									<img src={zaloLogo} alt="ZaloLogo" />
 								</div>
 							</div>
 						</div>

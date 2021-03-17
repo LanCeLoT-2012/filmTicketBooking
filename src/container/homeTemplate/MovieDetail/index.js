@@ -89,7 +89,11 @@ export default class MovieDetail extends Component {
 				<div>
 					<div className='get__Detail'>
 						<div className='background__blur'>
-							<img id='blur__img' src={film.thumbnail} alt="This is a dog" />
+							<img
+								id='blur__img'
+								src={film.thumbnail}
+								alt='This is a dog'
+							/>
 							<div className='black__overlay' />
 						</div>
 						<div className='movie__Detail'>
@@ -97,7 +101,10 @@ export default class MovieDetail extends Component {
 								<div className='detail__Row row'>
 									<div className='show__detail__left col-12 col-sm-8 col-md-9'>
 										<div className='img__trailer'>
-											<img src={film.thumbnail} alt="This is a dog" />
+											<img
+												src={film.thumbnail}
+												alt='This is a dog'
+											/>
 											<ModalVideo
 												channel='youtube'
 												isOpen={this.state.isOpen}
@@ -114,34 +121,36 @@ export default class MovieDetail extends Component {
 												<i className='fa fa-play'></i>
 											</button>
 										</div>
-										<div className='movie__info'>
-											<p id='movieName'>
-												{film.filmName}
-											</p>
-											<p>
-												<span
-													id={`${this.handleFilmLabel(
-														film.filmLabel
-													)}`}
+										<div className='blackOverlay'>
+											<div className='movie__info'>
+												<p id='movieName'>
+													{film.filmName}
+												</p>
+												<p>
+													<span
+														id={`${this.handleFilmLabel(
+															film.filmLabel
+														)}`}
+													>
+														{film.filmLabel}
+													</span>
+													<span id='movieDuration'>
+														{film.duration} -{" "}
+													</span>
+													<span id='IMDbPoint'>
+														0 IMDb -{" "}
+													</span>
+													<span id='movieFormat'>
+														2D/Digital
+													</span>
+												</p>
+												<button
+													type='button'
+													id='getTicket'
 												>
-													{film.filmLabel}
-												</span>
-												<span id='movieDuration'>
-													{film.duration} -{" "}
-												</span>
-												<span id='IMDbPoint'>
-													0 IMDb -{" "}
-												</span>
-												<span id='movieFormat'>
-													2D/Digital
-												</span>
-											</p>
-											<button
-												type='button'
-												id='getTicket'
-											>
-												MUA VÉ
-											</button>
+													MUA VÉ
+												</button>
+											</div>
 										</div>
 									</div>
 									<div className='show__detail__right col-0 col-sm-4 col-md-3'>
@@ -160,11 +169,26 @@ export default class MovieDetail extends Component {
 												className='rating__stars'
 											>
 												<div>
-													<img src={ratingStar} alt="This is a dog" />
-													<img src={ratingStar} alt="This is a dog" />
-													<img src={ratingStar} alt="This is a dog" />
-													<img src={ratingStar} alt="This is a dog" />
-													<img src={ratingStar} alt="This is a dog" />
+													<img
+														src={ratingStar}
+														alt='This is a dog'
+													/>
+													<img
+														src={ratingStar}
+														alt='This is a dog'
+													/>
+													<img
+														src={ratingStar}
+														alt='This is a dog'
+													/>
+													<img
+														src={ratingStar}
+														alt='This is a dog'
+													/>
+													<img
+														src={ratingStar}
+														alt='This is a dog'
+													/>
 												</div>
 											</div>
 											<div className='rating__numbers'>
@@ -225,7 +249,10 @@ export default class MovieDetail extends Component {
 											</a>
 										</li>
 									</ul>
-									<div className='tab-content' id='myTabContent'>
+									<div
+										className='tab-content'
+										id='myTabContent'
+									>
 										<div
 											className='tab-pane fade show active'
 											id='showTime'
@@ -235,8 +262,12 @@ export default class MovieDetail extends Component {
 											<Showtimes
 												history={this.props.history}
 												filmId={film._id}
-												showTimeCinemas={this.state.showTimeCinemas}
-												filmShowtimes={this.state.filmShowtimes}
+												showTimeCinemas={
+													this.state.showTimeCinemas
+												}
+												filmShowtimes={
+													this.state.filmShowtimes
+												}
 											/>
 										</div>
 										<div
@@ -260,10 +291,9 @@ export default class MovieDetail extends Component {
 													this.props.match.params
 														.filmId
 												}
-												idLoggedIn={
-													this.props.isLoggedIn
+												userInformation={
+													userInformation
 												}
-												userInformation={userInformation}
 												filmComments={film.comments}
 											/>
 										</div>

@@ -272,6 +272,9 @@
                                     margin: 10px 0;
                                     td {
                                         vertical-align: top;
+                                        .movieInfo {
+                                            color: #9b9b9b;
+                                        }
                                     }
                                     td:nth-child(1) {
                                         width: 50%;
@@ -283,6 +286,9 @@
                         .information__right {
                             padding-left: 30px;
                             border-left: 5px dotted rgb(0, 217, 255);
+                            .movieInfo {
+                                color: #9b9b9b;
+                            }
                         }
                     }
                 }
@@ -336,19 +342,6 @@
                                         height: 100%;
                                         width: 100%;
                                     }
-                                }
-                            }
-
-                            .rate__stars {
-                                display: flex;
-                                justify-content: flex-end;
-                                align-items: center;
-                                height: 100%;
-                                width: 30%;
-                                padding: 0;
-                                img {
-                                    height: 22px;
-                                    width: 22px;
                                 }
                             }
                         }
@@ -405,120 +398,240 @@
     }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 426px) {
     .get__Detail {
         .background__blur {
-            #blur__img {
-                filter: blur(0px);
-            }
-            .black__overlay {
-                height: 100%;
-                background: linear-gradient(to top, rgb(19, 19, 19) 20%, #1d1d1d0e);
-            }
+            display: none;
         }
+
         .movie__Detail {
-            top: 0;
-            padding-top: 80px;
-            height: 100%;
-            .container {
-                height: 100%;
-                .detail__Row {
-                    height: 100%;
-                    padding: 0;
-                    .show__detail__left {
-                        position: relative;
+            position: relative;
+            z-index: 0;
+            top: 50px;
+            width: 100vw;
+            padding-top: 0;
+            .detail__Row {
+                padding: 0;
+                .show__detail__left {
+                    position: relative;
+                    display: block;
+                    .img__trailer {
                         img {
-                            display: none;
+                            height: 500px;
+                            width: 100%;
+                            margin: 0;
                         }
+                        .modal-video {
+                            .modal-video-body {
+                                .modal-video-inner {
+                                    .modal-video-movie-wrap {
+                                        border-radius: 15px;
+                                        .modal-video-close-btn {
+                                            top: -20px;
+                                            left: -50px;
+                                            z-index: 100;
+                                            position: absolute;
+                                            width: 30px;
+                                            height: 30px;
+                                            opacity: 1;
+                                        }
+                                        iframe {
+                                            border-radius: 15px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .blackOverlay {
+                        position: absolute;
+                        height: 100%;
+                        bottom: 0;
+                        left: 0;
+                        padding: 0 25px;
+                        padding-bottom: 20px;
+                        width: 100%;
+                        background: linear-gradient(to top, rgba(19, 19, 19, 0.884) 20%, #1d1d1d17);
                         .movie__info {
                             position: absolute;
-                            bottom: 120px;
-                            #movieName {
-                                font-size: 30px;
+                            bottom: 25px;
+                            #showDay,
+                            #movieDuration,
+                            #IMDbPoint,
+                            #movieFormat {
+                                font-size: 14px;
                             }
-                            button {
+
+                            #movieName {
+                                font-size: 25px;
+                                margin: 10px 0;
+                            }
+
+                            #getTicket {
                                 display: none;
                             }
                         }
                     }
-                    .show__detail__right {
+                }
+
+                .show__detail__right {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+
+                    .rating__section {
                         display: none;
                     }
                 }
             }
         }
+
         .movieInformation {
-            padding: 0 15px;
-            padding-top: 500px;
+            width: 100vw;
+            position: relative;
+            z-index: 0;
+            padding: 0;
+
             .info__section {
-                padding: 0;
                 .nav-tabs {
-                    margin: 0;
-                    margin-bottom: 20px;
                     .nav-item {
-                        padding: 5px;
+                        padding: 8px;
+                        margin-bottom: 10px;
+
                         .active {
-                            font-size: 16px;
+                            font-size: 20px;
                         }
+
                         a {
                             font-size: 16px;
+
+                            &:hover {
+                                color: rgb(0, 217, 255);
+                            }
+
+                            &:focus {
+                                outline: none;
+                                box-shadow: none;
+                            }
                         }
                     }
                 }
+
                 #myTabContent {
                     #information {
+                        padding: 0;
                         .information__row {
                             .information__left {
-                                padding: 15px 0;
-                                border-bottom: 5px dotted rgb(0, 217, 255);
                                 table {
                                     width: 100%;
+                                    font-size: 14px;
+
                                     tr {
-                                        margin: 5px 0;
+                                        margin: 10px 0;
                                         td {
-                                            width: 50%;
+                                            vertical-align: top;
                                             p {
-                                                font-size: 16px;
+                                                margin-bottom: 5px;
                                             }
+                                        }
+                                        td:nth-child(1) {
+                                            width: 50%;
                                         }
                                     }
                                 }
                             }
+
                             .information__right {
-                                border: 0;
-                                padding: 15px 0;
+                                padding-left: 0px;
+                                padding: 0 15px;
+                                border-left: 0;
+                                margin-top: 10px;
+                                p {
+                                    font-size: 14px;
+                                    margin-bottom: 5px;
+                                }
                             }
                         }
                     }
+
                     #reviews {
+                        padding: 0;
                         .comments {
-                            padding: 0;
+                            background-color: whitesmoke;
+                            padding: 8px 12px;
+
                             .write__comment {
-                                height: 40px;
-                                margin: 0;
+                                height: 35px;
                                 .avatar {
-                                    padding: 0;
+                                    width: 35px;
+                                    height: 100%;
+
                                     .user__avatar {
-                                        width: 40px;
-                                        i {
-                                            font-size: 25px;
+                                        width: 35px;
+                                        img {
+                                            width: 100%;
+                                            height: 100%;
                                         }
                                     }
-                                }
-                                input {
-                                    height: 40px;
-                                }
-                                .rate__stars {
-                                    padding: 0;
-                                    img {
-                                        width: 15px;
-                                        height: 15px;
+
+                                    input {
+                                        height: 100%;
+                                        border-radius: 50px;
+                                        padding: 10px 20px;
+                                        border: 0;
+                                        width: 75%;
+                                        &:focus {
+                                            outline: none;
+                                            box-shadow: none;
+                                        }
+                                        &::placeholder {
+                                            font-size: 16px;
+                                        }
                                     }
                                 }
                             }
                         }
-                        .viewer__commnent {
-                            padding: 0;
+
+                        #viewersComments {
+                            #login_Required {
+                                display: none;
+                                margin: 20px 0;
+                                border-radius: 15px;
+                            }
+                            #noComments {
+                                margin-top: 10px;
+                                p {
+                                    font-size: 14px;
+                                    margin: 0;
+                                }
+                            }
+                            .oneComment {
+                                padding: 8px 12px;
+                                margin-top: 12px;
+                                .comment__header {
+                                    padding-bottom: 8px;
+                                    border-bottom: 1.5px solid black;
+                                    .userAvatar {
+                                        height: 35px;
+                                        width: 35px;
+                                        img {
+                                            height: 100%;
+                                            width: 100%;
+                                        }
+                                    }
+                                    #userName {
+                                        font-size: 16px;
+                                        margin-left: 20px;
+                                    }
+                                }
+                                .comment__body {
+                                    #userComment {
+                                        margin: 0;
+                                        padding-top: 8px;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -527,34 +640,119 @@
     }
 }
 
-@media screen and (min-width: 577px) and (max-width: 768px) {
+@media screen and (min-width: 426px) and (max-width: 769px) {
     .get__Detail {
+        .background__blur {
+            width: 100%;
+            padding: 0;
+            position: absolute;
+            z-index: 0;
+        }
+
         .movie__Detail {
-            .container {
-                .detail__Row {
-                    padding: 0;
-                    .show__detail__left {
-                        padding: 0;
-                        img {
-                            height: 300px;
-                            width: 200px;
+            .detail__Row {
+                padding: 0;
+            }
+        }
+
+        .movieInformation {
+            padding-top: 450px;
+            padding-left: 0;
+            padding-right: 0;
+
+            .info__section {
+                .nav-tabs {
+                    .nav-item {
+                        margin-bottom: 25px;
+
+                        .active {
+                            font-size: 25px;
                         }
-                        .movie__info {
-                            #movieName {
-                                font-size: 35px;
+                    }
+                }
+
+                #myTabContent {
+                    #information {
+                        padding: 0 70px;
+                        .information__row {
+                            .information__left {
+                                table {
+                                    tr {
+                                        td {
+                                            p {
+                                                margin-right: 5px;
+                                            }
+                                        }
+                                        td:nth-child(1) {
+                                            width: 50%;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .information__right {
+                                border-left: 4px dotted rgb(0, 217, 255);
                             }
                         }
                     }
-                    .show__detail__right {
-                        padding: 0;
-                        .rating__section {
-                            .rating__circle {
-                                .outside__circle {
-                                    height: 120px;
-                                    width: 120px;
-                                    .inside__circle {
-                                        height: 120px;
-                                        width: 120px;
+
+                    #reviews {
+                        padding: 0 80px;
+                        .comments {
+                            padding: 8px 12px;
+
+                            .write__comment {
+                                height: 40px;
+
+                                .avatar {
+                                    display: flex;
+                                    width: 40px;
+                                    padding-right: 0;
+                                    height: 100%;
+                                    margin: 0;
+
+                                    input {
+                                        height: 40px;
+                                    }
+
+                                    .user__avatar {
+                                        width: 40px;
+                                    }
+                                }
+                            }
+                        }
+
+                        #viewersComments {
+                            #login_Required {
+                                display: none;
+                                margin: 20px 0;
+                                border-radius: 15px;
+                            }
+                            #noComments {
+                                margin-top: 15px;
+                                border-radius: 15px;
+                                p {
+                                    margin: 0;
+                                }
+                            }
+                            .oneComment {
+                                padding: 8px 12px;
+                                .comment__header {
+                                    padding-bottom: 8px;
+                                    border-bottom: 1.5px solid black;
+                                    .userAvatar {
+                                        height: 40px;
+                                        width: 40px;
+                                    }
+                                    #userName {
+                                        font-size: 16px;
+                                        margin-left: 20px;
+                                    }
+                                }
+                                .comment__body {
+                                    #userComment {
+                                        margin: 0;
+                                        padding-top: 10px;
                                     }
                                 }
                             }
@@ -563,80 +761,115 @@
                 }
             }
         }
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .get__Detail {
         .movieInformation {
-            padding: 0 15px;
-            padding-top: 420px;
+            padding-top: 450px;
+            padding-left: 0;
+            padding-right: 0;
+
             .info__section {
-                padding: 0 60px;
                 .nav-tabs {
-                    margin: 0;
-                    margin-bottom: 20px;
                     .nav-item {
-                        padding: 5px;
+                        margin-bottom: 25px;
+
                         .active {
-                            font-size: 20px;
-                        }
-                        a {
-                            font-size: 20px;
+                            font-size: 25px;
                         }
                     }
                 }
+
                 #myTabContent {
                     #information {
+                        padding: 0 150px;
                         .information__row {
                             .information__left {
-                                padding: 15px 0;
-                                border-right: 5px dotted rgb(0, 217, 255);
                                 table {
-                                    width: 100%;
                                     tr {
-                                        margin: 5px 0;
                                         td {
-                                            width: 50%;
+                                            font-size: 18px;
                                             p {
-                                                font-size: 16px;
+                                                margin-right: 5px;
                                             }
                                         }
                                     }
                                 }
                             }
+
                             .information__right {
-                                border: 0;
-                                padding: 15px 0;
-                                padding-left: 50px;
+                                font-size: 18px;
+                                border-left: 5px dotted rgb(0, 217, 255);
                             }
                         }
                     }
+
                     #reviews {
+                        padding: 0 150px;
                         .comments {
-                            padding: 0;
+                            padding: 8px 12px;
+
                             .write__comment {
-                                height: 45px;
-                                margin: 0;
+                                height: 40px;
+
                                 .avatar {
-                                    padding: 0;
-                                    .user__avatar {
-                                        width: 45px;
-                                        i {
-                                            font-size: 25px;
-                                        }
+                                    display: flex;
+                                    width: 40px;
+                                    height: 40px;
+                                    padding-right: 0;
+                                    height: 100%;
+                                    margin: 0;
+
+                                    input {
+                                        height: 40px;
                                     }
-                                }
-                                input {
-                                    height: 45px;
-                                }
-                                .rate__stars {
-                                    padding: 0;
-                                    img {
-                                        width: 20px;
-                                        height: 20px;
-                                        margin-right: 2px;
+
+                                    .user__avatar {
+                                        width: 40px;
                                     }
                                 }
                             }
                         }
-                        .viewer__commnent {
-                            padding: 0;
+
+                        #viewersComments {
+                            #login_Required {
+                                display: none;
+                                margin: 20px 0;
+                                border-radius: 15px;
+                            }
+                            #noComments {
+                                margin-top: 15px;
+                                border-radius: 15px;
+                                p {
+                                    margin: 0;
+                                }
+                            }
+                            .oneComment {
+                                padding: 8px 12px;
+                                .comment__header {
+                                    padding-bottom: 8px;
+                                    .userAvatar {
+                                        height: 40px;
+                                        width: 40px;
+                                        img {
+                                            height: 100%;
+                                            width: 100%;
+                                        }
+                                    }
+                                    #userName {
+                                        font-size: 14px;
+                                        margin-left: 12px;
+                                    }
+                                }
+                                .comment__body {
+                                    #userComment {
+                                        margin: 0;
+                                        padding-top: 10px;
+                                    }
+                                }
+                            }
                         }
                     }
                 }

@@ -23,6 +23,8 @@ export default class CinemaCheckout extends Component {
 				return <img src={LotteCinemaLogo} alt='LotteCinemaLogo' />;
 			case "Mega GS":
 				return <img src={MegaGSLogo} alt='MegaGSLogo' />;
+			default:
+				return;
 		}
 	};
 

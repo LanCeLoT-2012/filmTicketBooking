@@ -18,7 +18,7 @@ export default class CinemaNew extends Component {
 			<div className='col-6'>
 				<div className={`cinemaNew row ` + this.isBordered(newOrder)}>
 					<div className='newThumbnail col-5'>
-						<img src={cinemaNew.thumbnailLink} />
+						<img src={cinemaNew.thumbnail} />
 					</div>
 					<div className='newPost col-7'>
 						<NavLink id='newTitle' to={`/newDetail/${cinemaNew.newsId}`}>

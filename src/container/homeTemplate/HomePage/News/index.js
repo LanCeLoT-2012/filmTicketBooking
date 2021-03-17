@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CinemaNew from "./cinemaNew";
-import Axios from "../../../../api/index";
+import axios from "axios";
 export default class News extends Component {
 	constructor(props) {
 		super(props);
@@ -10,15 +10,13 @@ export default class News extends Component {
 	}
 
 	componentDidMount = () => {
-		Axios.get("/getAllNews")
+		axios({
+			url: "http://localhost:5000/api/news/getAllNews",
+			method: "GET",
+		})
 			.then((result) => {
-				this.setState({
-					listOfNews: result.data,
-				});
+				this.setState({listOfNews: result.data});
 			})
-			.catch((err) => {
-				console.log(err.response);
-			});
 	};
 
 	renderHomeNews = () => {

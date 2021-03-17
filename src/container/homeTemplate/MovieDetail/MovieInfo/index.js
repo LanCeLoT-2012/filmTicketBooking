@@ -10,7 +10,7 @@ export default class MovieInfo extends Component {
 						<tbody>
 							<tr>
 								<td>
-									<p>Ngày công chiếu :</p>
+									<p className="movieInfo">Ngày công chiếu :</p>
 								</td>
 								<td>
 									<p>{releaseDate = releaseDate.toLocaleDateString()}</p>
@@ -18,7 +18,7 @@ export default class MovieInfo extends Component {
 							</tr>
 							<tr>
 								<td>
-									<p>Đạo diễn :</p>
+									<p className="movieInfo">Đạo diễn :</p>
 								</td>
 								<td>
 									<p>{movieInformation.director}</p>
@@ -26,7 +26,7 @@ export default class MovieInfo extends Component {
 							</tr>
 							<tr>
 								<td>
-									<p>Diễn viên :</p>
+									<p className="movieInfo">Diễn viên :</p>
 								</td>
 								<td>
 									<p>{movieInformation.actors}</p>
@@ -34,7 +34,7 @@ export default class MovieInfo extends Component {
 							</tr>
 							<tr>
 								<td>
-									<p>Thể loại :</p>
+									<p className="movieInfo">Thể loại :</p>
 								</td>
 								<td>
 									<p>{movieInformation.type}</p>
@@ -42,7 +42,7 @@ export default class MovieInfo extends Component {
 							</tr>
 							<tr>
 								<td>
-									<p>Quốc gia sản xuất :</p>
+									<p className="movieInfo">Quốc gia sản xuất :</p>
 								</td>
 								<td>
 									<p>{movieInformation.madeIn}</p>
@@ -52,7 +52,7 @@ export default class MovieInfo extends Component {
 					</table>
 				</div>
 				<div className='information__right text-white col-12 col-sm-6'>
-					<p>Nội dung :</p>
+					<p className="movieInfo">Nội dung :</p>
 					<p>{movieInformation.description}</p>
 				</div>
 			</div>
