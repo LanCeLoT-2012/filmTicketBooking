@@ -64,13 +64,11 @@ export default class Comments extends Component {
 	renderAllComments = (allComments) => {
 		if (allComments.length === 0) {
 			return (
-				<div id="noComments" className="alert alert-warning">
-					<p>
-						Hiện chưa có đánh giá nào cho bộ phim này !
-					</p>
+				<div id='noComments' className='alert alert-warning'>
+					<p>Hiện chưa có đánh giá nào cho bộ phim này !</p>
 				</div>
 			);
-		} else {
+		} else if (allComments && allComments.length > 0) {
 			return allComments.map((comment, index) => {
 				return <UserComment comment={comment} key={index} />;
 			});
@@ -78,6 +76,7 @@ export default class Comments extends Component {
 	};
 
 	UNSAFE_componentWillMount = () => {
+		this.setState({ filmComments: this.props.filmComments });
 		const accessToken = window.localStorage.getItem("accessToken");
 		if (accessToken) {
 			const userInformation = JSON.parse(window.localStorage.getItem("userInformation")); 

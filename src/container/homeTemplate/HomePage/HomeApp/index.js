@@ -27,8 +27,6 @@ export default class HomeApp extends Component {
 										<span> </span>
 										<a
 											className='tagA'
-											target='_blank'
-											ref='noreferrer'
 											href='https://itunes.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197?mt=8'
 										>
 											iOS
@@ -36,8 +34,6 @@ export default class HomeApp extends Component {
 										&amp;&nbsp;
 										<a
 											className='tagA'
-											target='_blank'
-											ref='noreferrer'
 											href='https://play.google.com/store/apps/details?id=vn.com.vng.phim123'
 										>
 											Android

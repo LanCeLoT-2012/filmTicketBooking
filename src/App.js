@@ -19,7 +19,7 @@ class App extends Component {
 						key={index}
 						exact={route.exact}
 						path={route.path}
-						component={route.component}
+						Component={route.component}
 					/>
 				);
 			})

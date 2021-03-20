@@ -41,6 +41,10 @@ body {
 					outline: none;
 				}
 			}
+			&:focus {
+				outline: none;
+				box-shadow: none;
+			}
 		}
 		.navbar-collapse {
 			position: absolute;
@@ -112,40 +116,48 @@ body {
 	}
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 426px) {
 	.cine-navbar {
-		nav {
-			.container {
-				.nav__left__col {
-					padding: 15px;
-					a {
-						font-size: 25px;
-						font-weight: 450;
-					}
+	height: 70px;
+
+	.navbar {
+		height: 70px;
+		.navbar-brand {
+			left: 15px;
+			font-size: 32px;
+		}
+		.navbar-toggler {
+			i {
+				font-size: 35px;
+				color: rgb(0, 217, 255);
+				&:focus {
+					box-shadow: none;
+					outline: none;
 				}
-
-				.nav__right__col {
-					padding: 15px;
-
-					.navbar-collapse {
-						button {
-							padding: 0;
-
-							#navHambuger {
-								font-size: 25px;
-							}
-						}
-
-						ul {
-							li {
-								a {
-									font-size: 15px;
-								}
-							}
-						}
+			}
+		}
+		.navbar-collapse {
+			top: 70px;
+			padding-right: 15px;
+			.navbar-nav {
+				.nav-item {
+					justify-content: flex-end;
+					a {
+						font-size: 16px;
+					}
+					.userAvatar {
+						height: 30px;
+						width: 30px;
+					}
+					.userName {
+						font-size: 16px;
+					}
+					.login_logout {
+						font-size: 16px;
 					}
 				}
 			}
 		}
 	}
+}
 }
