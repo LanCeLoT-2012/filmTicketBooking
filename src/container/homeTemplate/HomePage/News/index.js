@@ -32,7 +32,7 @@ export default class News extends Component {
 
 	render() {
 		return (
-			<div className='newsSection'>
+			<div id="news" className='newsSection'>
 				<div className='container'>
 					<h1>Tin tức</h1>
 					<div className='row'>{this.renderHomeNews()}</div>

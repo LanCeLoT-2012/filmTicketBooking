@@ -4,7 +4,7 @@ import slide2 from "../../../../assets/img/slide2.jpg";
 export default class HomeApp extends Component {
 	render() {
 		return (
-			<section className='apps'>
+			<section id='apps' className='apps'>
 				<div className='apps__bg'>
 					<div className='tix__container container'>
 						<div className='row apps__row '>
@@ -42,7 +42,11 @@ export default class HomeApp extends Component {
 								</div>
 							</div>
 							<div className='col-12 col-lg-6 apps__img text-center'>
-								<img className='img__bg' src={mobileLogo} alt="MobileLogo" />
+								<img
+									className='img__bg'
+									src={mobileLogo}
+									alt='MobileLogo'
+								/>
 								<div className='apps__carousel'>
 									<div className='slick__carousel'>
 										<div className='img__items'>

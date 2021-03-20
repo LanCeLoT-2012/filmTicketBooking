@@ -108,9 +108,9 @@ class Navbar extends Component {
 										className='nav-link'
 										activeClassName='active'
 										smooth
-										to='/#cinemas'
+										to='/#news'
 									>
-										Cụm rạp
+										Tin tức
 									</NavHashLink>
 								</li>
 								<li className='nav-item'>
@@ -118,9 +118,9 @@ class Navbar extends Component {
 										className='nav-link'
 										activeClassName='active'
 										smooth
-										to='/#news'
+										to='/#apps'
 									>
-										Tin tức
+										Ứng dụng
 									</NavHashLink>
 								</li>
 								<li className='nav-item'>

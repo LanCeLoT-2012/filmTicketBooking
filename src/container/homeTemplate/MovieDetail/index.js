@@ -145,8 +145,8 @@ export default class MovieDetail extends Component {
 													</span>
 												</p>
 												<button
-													type='button'
 													id='getTicket'
+													type='button'
 												>
 													MUA VÉ
 												</button>
