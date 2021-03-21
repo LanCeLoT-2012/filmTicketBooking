@@ -14,7 +14,7 @@ export default class HomeApp extends Component {
 										Ứng dụng tiện lợi dành cho
 									</h2>
 									<h2 className='mb-4'>người yêu điện ảnh</h2>
-									<p className='mb-4 pr-5'>
+									<p className='mb-4'>
 										Không chỉ đặt vé, bạn còn có thể bình
 										luận phim, chấm điểm rạp và đổi quà hấp
 										dẫn.

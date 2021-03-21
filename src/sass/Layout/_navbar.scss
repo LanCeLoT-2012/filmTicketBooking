@@ -139,21 +139,30 @@ body {
 		.navbar-collapse {
 			top: 70px;
 			padding-right: 15px;
+			border-top-left-radius: 7px;
+			border-bottom-left-radius: 7px;
+			border-bottom-right-radius: 7px;
+			background-color: rgba(0, 0, 0, 0.685);
 			.navbar-nav {
 				.nav-item {
 					justify-content: flex-end;
 					a {
-						font-size: 16px;
+						font-size: 14px;
+						padding: 5px 0 3px 0;
+						margin-bottom: 5px;
 					}
 					.userAvatar {
 						height: 30px;
 						width: 30px;
 					}
 					.userName {
-						font-size: 16px;
+						font-size: 14px;
 					}
 					.login_logout {
-						font-size: 16px;
+						font-size: 14px;
+					}
+					&:nth-child(4) {
+						margin-bottom: 10px;
 					}
 				}
 			}
