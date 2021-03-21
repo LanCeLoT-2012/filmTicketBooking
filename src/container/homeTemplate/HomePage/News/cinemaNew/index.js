@@ -15,7 +15,7 @@ export default class CinemaNew extends Component {
 	render() {
 		const { cinemaNew, newOrder } = this.props;
 		return (
-			<div className='col-6'>
+			<div className='col-12 col-sm-6'>
 				<div className={`cinemaNew row ` + this.isBordered(newOrder)}>
 					<div className='newThumbnail col-5'>
 						<img src={cinemaNew.thumbnail} />

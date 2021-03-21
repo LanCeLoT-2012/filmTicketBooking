@@ -415,12 +415,13 @@
     }
 }
 
-@media screen and (min-width: 426px) and (max-width: 768px) {
+@media screen and (min-width: 426px) and (max-width: 769px) {
     .comingSoon {
         .comingSoon__content {
             .moviesSection {
                 .nav-tabs {
                     margin-top: 15px;
+                    margin-bottom: 0;
                     .nav-item {
                         margin-bottom: 25px;
                         .active {
@@ -522,7 +523,7 @@
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1025px) {
+@media screen and (min-width: 769px) and (max-width: 1025px) {
     .comingSoon {
         .comingSoon__content {
             .moviesSection {
