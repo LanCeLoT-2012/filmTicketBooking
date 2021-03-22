@@ -6,7 +6,8 @@ import axios from "axios";
 import UserLogin from "./container/userLogin";
 import UserRegister from "./container/userRegister";
 import FanXiNe from "./routes/FanXiNe/index";
-import Checkout from "./container/homeTemplate/Checkout/index"
+import Checkout from "./container/homeTemplate/Checkout/index";
+import PageNotFound from "./container/components/PageNotFound/index";
 import { Component } from "react";
 
 axios.defaults.withCredentials = true;
@@ -33,6 +34,7 @@ class App extends Component {
 				<Route exact={true} path="/userRegister" render={(props) => <UserRegister {...props} />} />
 				{this.renderHomeAndDetailTemplate(homeAndDetailRoutes)}
 				<Route exact={true} path="/checkout/:showTimeId" render={(props) => <Checkout {...props} />} />
+				<Route exact={false} path="*" render={(props) => <PageNotFound {...props} />} />
 			</Switch>
 		);
 	}

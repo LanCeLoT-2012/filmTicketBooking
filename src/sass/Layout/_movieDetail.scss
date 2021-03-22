@@ -303,6 +303,7 @@
                         border-radius: 15px;
 
                         .write__comment {
+                            margin: 0;
                             display: block;
                             height: 50px;
                             width: 100%;
@@ -310,6 +311,7 @@
                             align-items: center;
 
                             .avatar {
+                                padding-left: 0;
                                 display: flex;
                                 width: 10%;
                                 padding-right: 0;
