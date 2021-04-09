@@ -24,7 +24,7 @@ class UserLogin extends Component {
 	handleUserLogin = (event) => {
 		event.preventDefault();
 		axios({
-			url: "http://localhost:5000/api/users/signIn",
+			url: "https://fanxine-be.herokuapp.com/api/users/signIn",
 			method: "POST",
 			data: this.state,
 		})
@@ -32,17 +32,24 @@ class UserLogin extends Component {
 				const decodedToken = JWT.decode(result.data.accessToken);
 				const userInformation = decodedToken.foundedUser;
 				// Set user's accessToken to localStorage
-				window.localStorage.setItem("accessToken", result.data.accessToken);
+				window.localStorage.setItem(
+					"accessToken",
+					result.data.accessToken
+				);
 				// Set token expired's time to localStorage
 				window.localStorage.setItem("expTime", decodedToken.exp);
 				// Set userInformation to localStorage
-				window.localStorage.setItem("userInformation", JSON.stringify(userInformation));
-				document.getElementById("resNoti").innerHTML = result.data.message;
+				window.localStorage.setItem(
+					"userInformation",
+					JSON.stringify(userInformation)
+				);
+				document.getElementById("resNoti").innerHTML =
+					result.data.message;
 				// Direct user to HomePage
 				this.props.userAlreadyLoggedIn();
 				setTimeout(() => {
 					this.props.history.push("/");
-				}, 1000)
+				}, 1000);
 			})
 			.catch((err) => {
 				const errNoti = err.response.data.error;

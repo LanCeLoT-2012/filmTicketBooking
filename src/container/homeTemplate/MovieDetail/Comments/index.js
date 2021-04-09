@@ -40,7 +40,7 @@ export default class Comments extends Component {
 	handleAddComment = (event) => {
 		event.preventDefault();
 		axios({
-			url: "http://localhost:5000/api/users/comment",
+			url: "https://fanxine-be.herokuapp.com/api/users/comment",
 			method: "POST",
 			data: {
 				userId: this.state.userInformation._id,
@@ -50,14 +50,13 @@ export default class Comments extends Component {
 		}).then(() => {
 			event.target.reset();
 			axios({
-				url:
-					`http://localhost:5000/api/films/getComments/${this.props.filmId}`,
+				url: `https://fanxine-be.herokuapp.com/api/films/getComments/${this.props.filmId}`,
 				method: "GET",
 			}).then((result) => {
 				this.setState({
 					filmComments: result.data.comments,
-				})
-			})
+				});
+			});
 		});
 	};
 

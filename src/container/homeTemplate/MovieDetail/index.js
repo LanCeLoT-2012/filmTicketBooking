@@ -44,7 +44,7 @@ export default class MovieDetail extends Component {
 
 	getFilmShowtimes = (filmInfomation, showTimeCinemas) => {
 		axios({
-			url: `http://localhost:5000/api/showtimes/getShowtimes/${this.props.match.params.filmId}`,
+			url: `https://fanxine-be.herokuapp.com/api/showtimes/getShowtimes/${this.props.match.params.filmId}`,
 			method: "GET",
 		}).then((result) => {
 			const filmShowtimes = result.data;
@@ -52,14 +52,14 @@ export default class MovieDetail extends Component {
 				film: filmInfomation,
 				showTimeCinemas,
 				filmShowtimes,
-				loading: false
-			})
-		})
+				loading: false,
+			});
+		});
 	}
 
 	getShowtimeCinemas = (filmInfomation) => {
 		axios({
-			url: `http://localhost:5000/api/showtimes/getCinemas/${this.props.match.params.filmId}`,
+			url: `https://fanxine-be.herokuapp.com/api/showtimes/getCinemas/${this.props.match.params.filmId}`,
 			method: "GET"
 		}).then((result) => {
 			const showTimeCinemas = result.data;
@@ -69,7 +69,7 @@ export default class MovieDetail extends Component {
 
 	getFilmInfomation = () => {	
 		axios({
-			url: `http://localhost:5000/api/films/getFilm/${this.props.match.params.filmId}`,
+			url: `https://fanxine-be.herokuapp.com/api/films/getFilm/${this.props.match.params.filmId}`,
 			method: "GET",
 		}).then((result) => {
 			const filmInfomation = result.data;

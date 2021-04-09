@@ -26,17 +26,21 @@ export default class UserRegister extends Component {
 		event.preventDefault();
 		const { history } = this.props;
 		axios({
-			url: "http://localhost:5000/api/users/signUp",
+			url: "https://fanxine-be.herokuapp.com/api/users/signUp",
 			method: "POST",
 			data: this.state,
-		}).then((result) => {
-			document.getElementById("resNoti").innerHTML = result.data.message;
-			setTimeout(() => {
-				history.push("/userLogin");
-			}, 1000);
-		}).catch((err) => {
-			document.getElementById("resNoti").innerHTML = err.response.data.error;
 		})
+			.then((result) => {
+				document.getElementById("resNoti").innerHTML =
+					result.data.message;
+				setTimeout(() => {
+					history.push("/userLogin");
+				}, 1000);
+			})
+			.catch((err) => {
+				document.getElementById("resNoti").innerHTML =
+					err.response.data.error;
+			});
 	};
 
 	handleChooseAvatar = (avatarImg) => {

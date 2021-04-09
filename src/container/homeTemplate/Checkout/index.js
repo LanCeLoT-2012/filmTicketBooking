@@ -362,7 +362,7 @@ export default class Checkout extends Component {
 	componentDidMount = () => {
 		const { showTimeId } = this.props.match.params;
 		axios({
-			url: `http://localhost:5000/api/showtimes/detailShowtime/${showTimeId}`,
+			url: `https://fanxine-be.herokuapp.com/api/showtimes/detailShowtime/${showTimeId}`,
 			method: "GET",
 		}).then((result) => {
 			this.setState({

@@ -20,7 +20,7 @@ export default class HomePage extends Component {
 
 	getAllCarousels = () => {
 		axios({
-			url: "http://localhost:5000/api/carousels/getAllCarousels",
+			url: "https://fanxine-be.herokuapp.com/api/carousels/getAllCarousels",
 			method: "GET",
 		}).then((allCarousels) => {
 			this.getShowingFilms(allCarousels.data);
@@ -29,7 +29,7 @@ export default class HomePage extends Component {
 
 	getShowingFilms = (carouselsData) => {
 		axios({
-			url: "http://localhost:5000/api/films/getShowingFilms",
+			url: "https://fanxine-be.herokuapp.com/api/films/getShowingFilms",
 			method: "GET",
 		}).then((showingFilms) => {
 			this.getCommingFilms(carouselsData, showingFilms.data);
@@ -38,7 +38,7 @@ export default class HomePage extends Component {
 
 	getCommingFilms = (carouselsData, showingFilmsData) => {
 		axios({
-			url: "http://localhost:5000/api/films/getCommingFilms",
+			url: "https://fanxine-be.herokuapp.com/api/films/getCommingFilms",
 			method: "GET",
 		}).then((commingFilms) => {
 			this.setState({

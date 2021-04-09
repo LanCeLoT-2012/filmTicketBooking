@@ -52,7 +52,7 @@ export default class CheckoutInfomation extends Component {
 		};
 		const accessToken = window.localStorage.getItem("accessToken");
 		axios({
-			url: "http://localhost:5000/api/showtimes/bookingSeats",
+			url: "https://fanxine-be.herokuapp.com/api/showtimes/bookingSeats",
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",
@@ -66,7 +66,12 @@ export default class CheckoutInfomation extends Component {
 				let type = "bookingSuccess";
 				let httpStatus = 200;
 				let modalStatus = true;
-				this.props.handleGetModalStatus(type, modalStatus, result.data.message, httpStatus);
+				this.props.handleGetModalStatus(
+					type,
+					modalStatus,
+					result.data.message,
+					httpStatus
+				);
 			})
 			.catch((err) => {
 				let type = "Error";

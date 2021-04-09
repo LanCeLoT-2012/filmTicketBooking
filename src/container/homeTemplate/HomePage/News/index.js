@@ -11,12 +11,11 @@ export default class News extends Component {
 
 	componentDidMount = () => {
 		axios({
-			url: "http://localhost:5000/api/news/getAllNews",
+			url: "https://fanxine-be.herokuapp.com/api/news/getAllNews",
 			method: "GET",
-		})
-			.then((result) => {
-				this.setState({listOfNews: result.data});
-			})
+		}).then((result) => {
+			this.setState({ listOfNews: result.data });
+		});
 	};
 
 	renderHomeNews = () => {
