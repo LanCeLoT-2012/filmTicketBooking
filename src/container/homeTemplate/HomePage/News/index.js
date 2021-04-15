@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import CinemaNew from "./cinemaNew";
-import axios from "axios";
 export default class News extends Component {
 	constructor(props) {
 		super(props);
@@ -9,18 +8,9 @@ export default class News extends Component {
 		};
 	}
 
-	componentDidMount = () => {
-		axios({
-			url: "https://fanxine-be.herokuapp.com/api/news/getAllNews",
-			method: "GET",
-		}).then((result) => {
-			this.setState({ listOfNews: result.data });
-		});
-	};
 
 	renderHomeNews = () => {
-		const { listOfNews } = this.state;
-		console.log(listOfNews);
+		const { listOfNews } = this.props;
 		if (listOfNews) {
 			return listOfNews.map((cinemaNew, index) => {
 				let newOrder = index;

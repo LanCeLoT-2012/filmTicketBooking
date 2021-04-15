@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class UserComment extends Component {
-    render() {
-		const { comment } = this.props;
-        return (
+	render() {
+    const { comment } = this.props;
+		return (
 			<div className='oneComment'>
 				<div className='comment__header d-flex'>
 					<div className='userAvatar'>
@@ -16,5 +16,5 @@ export default class UserComment extends Component {
 				</div>
 			</div>
 		);
-    }
+	}
 }

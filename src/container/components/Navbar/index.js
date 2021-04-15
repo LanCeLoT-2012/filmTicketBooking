@@ -60,14 +60,8 @@ class Navbar extends Component {
 		if (!accessToken) {
 			this.setState({ isLoggedIn: false, userInformation: null });
 		} else {
-			const tokenExpTime = window.localStorage.getItem("expTime");
-			const currentDate = new Date();
-			if (tokenExpTime * 1000 < currentDate.getTime()) {
-				this.props.history.push("/userLogin");
-			} else {
-				const userInformation = JSON.parse(window.localStorage.getItem("userInformation"));
-				this.setState({ isLoggedIn: true, userInformation: userInformation });
-			}
+			const userInformation = JSON.parse(window.localStorage.getItem("userInformation"));
+			this.setState({ isLoggedIn: true, userInformation: userInformation });
 		}
 	};
 

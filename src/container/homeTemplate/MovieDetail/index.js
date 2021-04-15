@@ -8,7 +8,7 @@ import Comments from "./Comments/index";
 
 import ratingStar from "../../../assets/img/star1.png";
 import ModalVideo from "react-modal-video";
-import axios from "axios";
+import callApi from "../../../api/index";
 
 export default class MovieDetail extends Component {
 	constructor(props) {
@@ -43,38 +43,33 @@ export default class MovieDetail extends Component {
 	};
 
 	getFilmShowtimes = (filmInfomation, showTimeCinemas) => {
-		axios({
-			url: `https://fanxine-be.herokuapp.com/api/showtimes/getShowtimes/${this.props.match.params.filmId}`,
-			method: "GET",
-		}).then((result) => {
-			const filmShowtimes = result.data;
-			this.setState({
-				film: filmInfomation,
-				showTimeCinemas,
-				filmShowtimes,
-				loading: false,
-			});
+    callApi.get(`/showtimes/getShowtimes/${this.props.match.params.filmId}`)
+		  .then((result) => {
+			  const filmShowtimes = result.data;
+			  this.setState({
+				  film: filmInfomation,
+				  showTimeCinemas,
+				  filmShowtimes,
+				  loading: false,
+			  });
 		});
 	}
 
 	getShowtimeCinemas = (filmInfomation) => {
-		axios({
-			url: `https://fanxine-be.herokuapp.com/api/showtimes/getCinemas/${this.props.match.params.filmId}`,
-			method: "GET"
-		}).then((result) => {
-			const showTimeCinemas = result.data;
-			this.getFilmShowtimes(filmInfomation, showTimeCinemas);
-		})
+		callApi.get(`/showtimes/getCinemas/${this.props.match.params.filmId}`)
+      .then((result) => {
+			  const showTimeCinemas = result.data;
+			  this.getFilmShowtimes(filmInfomation, showTimeCinemas);
+		  })
 	}
 
 	getFilmInfomation = () => {	
-		axios({
-			url: `https://fanxine-be.herokuapp.com/api/films/getFilm/${this.props.match.params.filmId}`,
-			method: "GET",
-		}).then((result) => {
-			const filmInfomation = result.data;
-			this.getShowtimeCinemas(filmInfomation);
-		});
+    callApi(`/films/getFilm/${this.props.match.params.filmId}`)
+      .then((result) => {
+        const filmInfomation = result.data;
+				this.getShowtimeCinemas(filmInfomation);
+			}
+		);
 	}
 
 	componentDidMount = () => {

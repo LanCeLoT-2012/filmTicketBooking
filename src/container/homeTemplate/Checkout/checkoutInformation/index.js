@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import callApi from "../../../../api/index";
 
 export default class CheckoutInfomation extends Component {
 	constructor(props) {
@@ -50,17 +50,14 @@ export default class CheckoutInfomation extends Component {
 			bookingSeatIds,
 			paymentMethod,
 		};
-		const accessToken = window.localStorage.getItem("accessToken");
-		axios({
-			url: "https://fanxine-be.herokuapp.com/api/showtimes/bookingSeats",
-			headers: {
-				"Content-Type": "application/json",
+    const accessToken = window.localStorage.getItem("accessToken");
+    callApi.post("/showtimes/bookingSeats", { bookingSeatsInfo }, {
+      headers: {
+        "Content-Type": "application/json",
 				Accept: "application/json",
-				Authorization: `Bearer ${accessToken}`,
-			},
-			data: bookingSeatsInfo,
-			method: "POST",
-		})
+        authorization: `Bearer ${accessToken}`
+      }
+    })
 			.then((result) => {
 				console.log(result.data);
 				let type = "bookingSuccess";
@@ -74,7 +71,7 @@ export default class CheckoutInfomation extends Component {
 				);
 			})
 			.catch((err) => {
-				let type = "Error";
+				let type = "Error"; 
 				let modalStatus = true;
 				this.props.handleGetModalStatus(
 					type,

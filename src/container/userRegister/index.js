@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import "../../sass/Layout/_userLogin.scss";
 import avatar from "../../assets/img/avatar.png";
-import axios from "axios";
+import callApi from "../../api/index";
 export default class UserRegister extends Component {
 	constructor(props) {
 		super(props);
@@ -25,11 +24,7 @@ export default class UserRegister extends Component {
 	handleUserRegister = (event) => {
 		event.preventDefault();
 		const { history } = this.props;
-		axios({
-			url: "https://fanxine-be.herokuapp.com/api/users/signUp",
-			method: "POST",
-			data: this.state,
-		})
+		callApi.post("/users/signUp", this.state)
 			.then((result) => {
 				document.getElementById("resNoti").innerHTML =
 					result.data.message;
@@ -51,20 +46,7 @@ export default class UserRegister extends Component {
 
 	handleRenderAvatars = () => {
 		const avatarsName = [
-			"batman",
-			"chaplin",
-			"cloud",
-			"harleyQuinn",
-			"japaneseWoman",
-			"jason",
-			"noFace",
-			"nun",
-			"pencil",
-			"sheep",
-			"sloth",
-			"spider",
-			"Trump",
-			"zombie",
+			"batman", "chaplin", "cloud", "harleyQuinn", "japaneseWoman", "jason", "noFace", "nun", "pencil", "sheep", "sloth", "spider", "Trump", "zombie",
 		];
 		return avatarsName.map((avatarImg) => {
 			return (
@@ -105,7 +87,7 @@ export default class UserRegister extends Component {
 									</button>
 								</div>
 							</div>
-							<label for='loginEmail'>Email :</label>
+							<label htmlFor='loginEmail'>Email :</label>
 							<input
 								type='text'
 								id='loginEmail'
@@ -113,7 +95,7 @@ export default class UserRegister extends Component {
 								placeholder='Email đăng nhập ...'
 								onChange={this.handleOnChange}
 							/>
-							<label for='loginPass'>Mật khẩu :</label>
+							<label htmlFor='loginPass'>Mật khẩu :</label>
 							<input
 								type='password'
 								id='loginPass'
@@ -121,7 +103,7 @@ export default class UserRegister extends Component {
 								placeholder='Mật khẩu ...'
 								onChange={this.handleOnChange}
 							/>
-							<label for='confirmPass'>Xác nhận mật khẩu :</label>
+							<label htmlFor='confirmPass'>Xác nhận mật khẩu :</label>
 							<input
 								type='password'
 								id='confirmPass'
@@ -129,7 +111,7 @@ export default class UserRegister extends Component {
 								placeholder='Xác nhận mật khẩu ...'
 								onChange={this.handleOnChange}
 							/>
-							<label for='accountName'>Tên hiển thị :</label>
+							<label htmlFor='accountName'>Tên hiển thị :</label>
 							<input
 								type='text'
 								id='accountName'

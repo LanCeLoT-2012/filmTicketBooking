@@ -36,7 +36,7 @@ class Movie extends Component {
 	};
 
 	render() {
-		const { movie, history } = this.props;
+		const { movie, history } = this.props;                        
 		return (
 			<div className='movieColumn col-6 col-sm-3 col-md-3 col-lg-3'>
 				<div className='movie__image'>

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import ratingStar from "../../../../assets/img/star1.png";
 import UserComment from "./userComment";
 import defaultAvatar from "../../../../assets/img/avatar.png";
-import axios from "axios";
-export default class Comments extends Component {
+import { withRouter } from "react-router-dom";
+import callApi from "../../../../api/index";
+class Comments extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -21,46 +21,49 @@ export default class Comments extends Component {
 	}
 
 	handleGetUserComment = (event) => {
-		const { name, value } = event.target;
 		this.setState({
 			userComment: {
-				[name]: value,
+        content: event.target.value
 			},
 		});
-	};
-
-	loginToComment = () => {
-		const accessToken = window.localStorage.getItem("accessToken");
-		if (!accessToken) {
-			document.getElementById("login_Required").style.display = "block";
-			document.getElementById("commentInput").disabled = true;
-		}
 	};
 
 	handleAddComment = (event) => {
-		event.preventDefault();
-		axios({
-			url: "https://fanxine-be.herokuapp.com/api/users/comment",
-			method: "POST",
-			data: {
-				userId: this.state.userInformation._id,
-				content: this.state.userComment.content,
-				filmId: this.props.filmId,
-			},
-		}).then(() => {
-			event.target.reset();
-			axios({
-				url: `https://fanxine-be.herokuapp.com/api/films/getComments/${this.props.filmId}`,
-				method: "GET",
-			}).then((result) => {
-				this.setState({
-					filmComments: result.data.comments,
-				});
-			});
-		});
+    event.preventDefault();
+    const accessToken = window.localStorage.getItem("accessToken")
+    callApi.post("/users/comment", {
+        filmId: this.props.filmId,
+        content: this.state.userComment.content
+    } ,{
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+      },
+    })
+      .then(() => {
+        callApi.get(`films/getComments/${this.props.filmId}`)
+          .then((result) => {
+            this.setState({
+              filmComments: result.data.comments,
+              userComment: {
+                content: ""
+              }
+			      });
+          })
+      }) 
+      .catch((err) => {
+        const { status } = err.response;
+        const { error, message } = err.response.data;
+        if (status === 401 && error === "Unauthorized !") {
+          const userCommentInput = document.getElementById("login_Required");
+          userCommentInput.style.display = "block";
+          userCommentInput.disabled = true;
+        } else if (status === 401 && error === "Expired Token !") {
+          this.props.history.push({ pathname: "/userLogin", state: { message } });
+        }
+      })
 	};
 
-	renderAllComments = (allComments) => {
+  renderAllComments = (allComments) => {
 		if (allComments.length === 0) {
 			return (
 				<div id='noComments' className='alert alert-warning'>
@@ -74,16 +77,14 @@ export default class Comments extends Component {
 		}
 	};
 
-	UNSAFE_componentWillMount = () => {
-		this.setState({ filmComments: this.props.filmComments });
-		const accessToken = window.localStorage.getItem("accessToken");
-		if (accessToken) {
-			const userInformation = JSON.parse(window.localStorage.getItem("userInformation")); 
-			this.setState({
-				userInformation,
-				filmComments: this.props.filmComments,
-			});	
-		}
+  UNSAFE_componentWillMount = () => {
+    this.setState({filmComments: this.props.filmComments})
+    const userInformation = JSON.parse(window.localStorage.getItem("userInformation"));
+    if (userInformation !== null) {
+      this.setState({
+        userInformation
+      })
+    } 
 	}
 
 	render() {
@@ -94,12 +95,15 @@ export default class Comments extends Component {
 						<div className='write__comment row'>
 							<div className='avatar col-12'>
 								<div className='user__avatar'>
-									<img src={this.state.userInformation.avatar} />
+									<img
+										src={this.state.userInformation.avatar}
+									/>
 								</div>
 								<input
 									id='commentInput'
 									type='text'
 									name='content'
+									value={this.state.userComment.content}
 									onChange={this.handleGetUserComment}
 									onFocus={this.loginToComment}
 									placeholder='Bạn nghĩ gì về phim này ... ?'
@@ -119,4 +123,4 @@ export default class Comments extends Component {
 	}
 }
 
-
+export default withRouter(Comments)

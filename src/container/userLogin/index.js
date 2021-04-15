@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import "../../sass/Layout/_userLogin.scss";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import axios from "axios";
+import callApi from "../../api/index";
 import JWT from "jsonwebtoken";
-class UserLogin extends Component {
+export default class UserLogin extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -23,11 +21,7 @@ class UserLogin extends Component {
 
 	handleUserLogin = (event) => {
 		event.preventDefault();
-		axios({
-			url: "https://fanxine-be.herokuapp.com/api/users/signIn",
-			method: "POST",
-			data: this.state,
-		})
+    callApi.post("/users/signIn", this.state)
 			.then((result) => {
 				const decodedToken = JWT.decode(result.data.accessToken);
 				const userInformation = decodedToken.foundedUser;
@@ -36,7 +30,7 @@ class UserLogin extends Component {
 					"accessToken",
 					result.data.accessToken
 				);
-				// Set token expired's time to localStorage
+				// Set token's expired time to localStorage
 				window.localStorage.setItem("expTime", decodedToken.exp);
 				// Set userInformation to localStorage
 				window.localStorage.setItem(
@@ -46,16 +40,22 @@ class UserLogin extends Component {
 				document.getElementById("resNoti").innerHTML =
 					result.data.message;
 				// Direct user to HomePage
-				this.props.userAlreadyLoggedIn();
 				setTimeout(() => {
 					this.props.history.push("/");
 				}, 1000);
 			})
-			.catch((err) => {
+      .catch((err) => {
 				const errNoti = err.response.data.error;
 				document.getElementById("resNoti").innerHTML = errNoti;
 			});
 	};
+
+  componentDidMount = () => {
+    const { state } = this.props.location;
+    if (state) {
+      document.getElementById("resNoti").innerHTML = state.message;
+    }
+  }
 
 	render() {
 		return (
@@ -66,7 +66,7 @@ class UserLogin extends Component {
 							<h1>Đăng nhập</h1>
 						</div>
 						<div className='header__body'>
-							<label htmlfor='emailOrPhone'>Email :</label>
+							<label htmlFor='emailOrPhone'>Email :</label>
 							<input
 								type='text'
 								id='emailOrPhone'
@@ -74,7 +74,7 @@ class UserLogin extends Component {
 								name='email'
 								onChange={this.handleOnChange}
 							/>
-							<label htmlfor='password'>Mật khẩu :</label>
+							<label htmlFor='password'>Mật khẩu :</label>
 							<input
 								type='password'
 								id='password'
@@ -103,13 +103,4 @@ class UserLogin extends Component {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		userAlreadyLoggedIn: (data) => {
-			dispatch({ type: "USER_LOGIN_SUCCESS", payload: data });
-		},
-	};
-};
-
-export default connect(null, mapDispatchToProps)(UserLogin);
 

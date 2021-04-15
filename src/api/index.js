@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const instance = axios.create({
-	baseURL: "https://fanxine-be.herokuapp.com/api",
+const callApi = axios.create({
+	baseURL: "http://localhost:5000/api",
 	withCredentials: true,
 });
 
-export default instance;
+export default callApi;

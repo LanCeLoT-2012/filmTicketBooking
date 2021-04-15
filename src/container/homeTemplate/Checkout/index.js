@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Loading from "../../components/Loader/index";
 import { Modal } from "react-bootstrap";
-import axios from "axios";
+import callApi from "../../../api/index"
 
 // Import components
 import CinemaCheckout from "./cinemaCheckout";
@@ -360,16 +360,14 @@ export default class Checkout extends Component {
 	};
 
 	componentDidMount = () => {
-		const { showTimeId } = this.props.match.params;
-		axios({
-			url: `https://fanxine-be.herokuapp.com/api/showtimes/detailShowtime/${showTimeId}`,
-			method: "GET",
-		}).then((result) => {
-			this.setState({
-				detailShowtime: result.data,
-				loading: false,
-			});
-		});
+    const { showTimeId } = this.props.match.params;
+    callApi.get(`/showtimes/detailShowtime/${showTimeId}`)
+      .then((result) => {
+		    this.setState({
+			    detailShowtime: result.data,
+			    loading: false,
+		    });
+	  });
 	};
 
 	render() {

@@ -2,26 +2,21 @@ import { homeAndDetailRoutes } from "./routes/index";
 import { Route, Switch } from "react-router-dom";
 import "../node_modules/react-modal-video/scss/modal-video.scss";
 import "./sass/main.scss";
-import axios from "axios";
-import UserLogin from "./container/userLogin";
-import UserRegister from "./container/userRegister";
-import FanXiNe from "./routes/FanXiNe/index";
-import Checkout from "./container/homeTemplate/Checkout/index";
-import PageNotFound from "./container/components/PageNotFound/index";
 import { Component } from "react";
+import loadable from "@loadable/component";
 
-axios.defaults.withCredentials = true;
+// Import Component using @loadable/component
+const UserLogin = loadable(() => import("./container/userLogin/index"));
+const UserRegister = loadable(() => import("./container/userRegister/index"));
+const FanXiNe = loadable(() => import("./routes/FanXiNe/index"));
+const Checkout = loadable(() => import("./container/homeTemplate/Checkout/index"));
+const PageNotFound = loadable(() => import("./container/components/PageNotFound/index"));
 class App extends Component {
 	renderHomeAndDetailTemplate = (homeAndDetailRoutes) => {
 		if (homeAndDetailRoutes && homeAndDetailRoutes.length > 0) {
 			return homeAndDetailRoutes.map((route, index) => {
 				return (
-					<FanXiNe
-						key={index}
-						exact={route.exact}
-						path={route.path}
-						Component={route.component}
-					/>
+					<FanXiNe key={index} exact={route.exact} path={route.path} Component={route.component} />
 				);
 			})
 		}

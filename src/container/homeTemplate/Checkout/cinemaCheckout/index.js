@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 // Import CinemaLogos
 import CGVLogo from "../../../../assets/img/cgv.png";
@@ -31,38 +31,43 @@ export default class CinemaCheckout extends Component {
 	render() {
 		const { detailShowtime } = this.props;
 		// Get Cinema's brand name
-		let cinemaBrandName = detailShowtime.cinemaId.cinemaBrand.brandName.replace(
-			" ",
-			""
-		);
+    let cinemaBrandName = detailShowtime.cinemaId.cinemaBrand.brandName.replace(" ", "");
 
-        return (
-            <>
-                <div className='cinema'>
-				{this.renderCinemaLogo(
-					detailShowtime.cinemaId.cinemaBrand.brandName
-				)}
-				<div className='information'>
-					<div>
-						<p>
-							<span id={cinemaBrandName}>
-								{detailShowtime.cinemaId.cinemaBrand.brandName}
-							</span>
-							<span> - {detailShowtime.cinemaId.cinemaName}</span>
-						</p>
-						<p id='showTimes'>
-							{this.props.showDate} -{" "}
-							<span>{this.props.startingTime}</span> -{" "}
-							<span>{detailShowtime.theaterId.theaterName}</span>
-						</p>
+		return (
+			<>
+				<div className='cinema'>
+					{this.renderCinemaLogo(
+						detailShowtime.cinemaId.cinemaBrand.brandName
+					)}
+					<div className='information'>
+						<div>
+							<p>
+								<span id={cinemaBrandName}>
+									{
+										detailShowtime.cinemaId.cinemaBrand
+											.brandName
+									}
+								</span>
+								<span>
+									{" "}
+									- {detailShowtime.cinemaId.cinemaName}
+								</span>
+							</p>
+							<p id='showTimes'>
+								{this.props.showDate} -{" "}
+								<span>{this.props.startingTime}</span> -{" "}
+								<span>
+									{detailShowtime.theaterId.theaterName}
+								</span>
+							</p>
+						</div>
 					</div>
 				</div>
-            </div>
-            <div className='screen'>
-				<div id='mainScreen'></div>
-				<p>Màn hình</p>
-		    </div>
-            </>
+				<div className='screen'>
+					<div id='mainScreen'></div>
+					<p>Màn hình</p>
+				</div>
+			</>
 		);
 	}
 }

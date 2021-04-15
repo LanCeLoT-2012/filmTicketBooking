@@ -6,7 +6,7 @@ import News from "./News";
 import HomeApp from "./HomeApp";
 import Partner from "./Partner";
 import Footer from "../../components/Footer";
-import axios from "axios";
+import callApi from "../../../api/index";
 export default class HomePage extends Component {
 	constructor(props) {
 		super(props);
@@ -15,40 +15,40 @@ export default class HomePage extends Component {
 			carousels: [],
 			showingFilms: [],
 			commingFilms: [],
+			news: [],
 		};
 	}
 
 	getAllCarousels = () => {
-		axios({
-			url: "https://fanxine-be.herokuapp.com/api/carousels/getAllCarousels",
-			method: "GET",
-		}).then((allCarousels) => {
+		callApi.get("/carousels/getAllCarousels").then((allCarousels) => {
 			this.getShowingFilms(allCarousels.data);
 		});
 	};
 
 	getShowingFilms = (carouselsData) => {
-		axios({
-			url: "https://fanxine-be.herokuapp.com/api/films/getShowingFilms",
-			method: "GET",
-		}).then((showingFilms) => {
+		callApi.get("/films/getShowingFilms").then((showingFilms) => {
 			this.getCommingFilms(carouselsData, showingFilms.data);
 		});
 	};
 
 	getCommingFilms = (carouselsData, showingFilmsData) => {
-		axios({
-			url: "https://fanxine-be.herokuapp.com/api/films/getCommingFilms",
-			method: "GET",
-		}).then((commingFilms) => {
-			this.setState({
-				loading: false,
-				carousels: carouselsData,
-				showingFilms: showingFilmsData,
-				commingFilms: commingFilms.data,
-			});
+		callApi.get("/films/getCommingFilms").then((commingFilms) => {
+      this.getAllNews(carouselsData, showingFilmsData, commingFilms.data);
 		});
 	};
+
+  getAllNews = (carouselsData, showingFilmsData, commingFilmsData) => {
+    callApi.get("/news/getAllNews")
+      .then((news) => {
+        this.setState({
+			    carousels: carouselsData,
+		      showingFilms: showingFilmsData,
+			    commingFilms: commingFilmsData,
+          news: news.data,
+          loading: false
+        });
+      })
+  }
 
 	componentDidMount = () => {
 		this.getAllCarousels();
@@ -65,7 +65,7 @@ export default class HomePage extends Component {
 						showingFilms={this.state.showingFilms}
 						commingFilms={this.state.commingFilms}
 					/>
-					<News />
+					<News listOfNews={this.state.news} />
 					<HomeApp />
 					<Partner />
 					<Footer />
