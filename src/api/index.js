@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const callApi = axios.create({
-	baseURL: "http://localhost:5000/api",
+	baseURL: "https://fanxine-be.herokuapp.com/api",
 	withCredentials: true,
 });
 
