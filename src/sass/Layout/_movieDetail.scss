@@ -96,6 +96,10 @@
                     #movieName {
                         font-size: 40px;
                         margin: 10px 0;
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
                     }
 
                     #redLabel {
@@ -469,6 +473,10 @@
                             #movieName {
                                 font-size: 25px;
                                 margin: 10px 0;
+                                overflow: hidden;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3;
+                                -webkit-box-orient: vertical;
                             }
 
                             #getTicket {
