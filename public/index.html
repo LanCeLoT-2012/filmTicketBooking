@@ -114,6 +114,17 @@
 	</script>
 
 	<script>
+		$(document).ready(function () {
+			$("#playingMoviesCarousel").swiperight(function () {
+				$(this).carousel("prev");
+			});
+			$("#playingMoviesCarousel").swipeleft(function () {
+				$(this).carousel("next");
+			});
+		});
+	</script>
+
+	<script>
 		$('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
 			$(".slick__carousel").slick("setPosition");
 		});
