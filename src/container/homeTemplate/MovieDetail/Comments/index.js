@@ -107,7 +107,8 @@ class Comments extends Component {
 									onChange={this.handleGetUserComment}
 									onFocus={this.loginToComment}
 									placeholder='Bạn nghĩ gì về phim này ... ?'
-								/>
+                />
+                <button className="send__message" type="submit">Gửi</button>
 							</div>
 						</div>
 					</form>
