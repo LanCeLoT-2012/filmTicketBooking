@@ -327,22 +327,16 @@
                     height: auto;
                     #playingMovie,
                     #comingMovie {
-                        width: 100%;
+                        width: 90%;
                         #playingMoviesCarousel,
                         #comingMoviesCarousel {
                             width: 100%;
                             position: relative;
                             .left__control {
-                                display: none;
-                                .ion-ios-arrow-left {
-                                    display: none;
-                                }
+                              left: -30px;
                             }
                             .right__control {
-                                display: none;
-                                .ion-ios-arrow-right {
-                                    display: none;
-                                }
+                              right: -30px;
                             }
                         }
                     }
@@ -351,7 +345,7 @@
                             padding-top: 0;
                             .movie__image {
                                 img:nth-child(1) {
-                                    height: 270px;
+                                    height: 240px;
                                 }
                                 .movie__point__label {
                                     .movie__star {
