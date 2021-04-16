@@ -56,7 +56,6 @@
                         width: 100%;
                         position: relative;
                         .left__control {
-                            height: 1080px;
                             position: absolute;
                             left: -120px;
                             display: flex;
@@ -70,7 +69,6 @@
                             }
                         }
                         .right__control {
-                            height: 1080px;
                             position: absolute;
                             right: -120px;
                             display: flex;
@@ -334,9 +332,15 @@
                             position: relative;
                             .left__control {
                               left: -30px;
+                              .ion-ios-arrow-left {
+                                display: none;
+                              }
                             }
                             .right__control {
                               right: -30px;
+                              .ion-ios-arrow-right {
+                                display: none;
+                              }
                             }
                         }
                     }
@@ -430,20 +434,27 @@
                 }
                 #myTabContent {
                     height: auto;
+                    width: 90%;
                     #playingMovie,
                     #comingMovie {
                         #playingMoviesCarousel,
                         #comingMoviesCarousel {
                             .left__control {
                                 display: flex;
+                                left: -40px;
+                                width: 5%;
                                 .ion-ios-arrow-left {
-                                    display: block;
+                                  font-size: 60px;
+                                  display: block;
                                 }
                             }
                             .right__control {
-                                display: none;
+                                display: flex;
+                                right: -40px;
+                                width: 5%;
                                 .ion-ios-arrow-right {
-                                    display: none;
+                                  font-size: 60px;
+                                  display: block;
                                 }
                             }
                         }
