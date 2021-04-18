@@ -53,9 +53,13 @@ class Comments extends Component {
       .catch((err) => {
         const { status } = err.response;
         const { error, message } = err.response.data;
-        if (status === 401 && error === "Unauthorized !") {
-          const userCommentInput = document.getElementById("login_Required");
+        const userCommentInput = document.getElementById("login_Required");
+        if (status === 400) {
           userCommentInput.style.display = "block";
+			    userCommentInput.innerHTML = `${error}`;
+        } else if (status === 401 && error === "Unauthorized !") {
+          userCommentInput.style.display = "block";
+          userCommentInput.innerHTML = `${error}`;
           userCommentInput.disabled = true;
         } else if (status === 401 && error === "Expired Token !") {
           this.props.history.push({ pathname: "/userLogin", state: { message } });
@@ -114,9 +118,7 @@ class Comments extends Component {
 					</form>
 				</div>
 				<div id='viewersComments' className='viewer__commnent'>
-					<div id='login_Required' className='alert alert-danger'>
-						Bạn cần phải đăng nhập để bình luận về bộ phim này
-					</div>
+					<div id='login_Required' className='alert alert-danger'></div>
 					{this.renderAllComments(this.state.filmComments)}
 				</div>
 			</div>
